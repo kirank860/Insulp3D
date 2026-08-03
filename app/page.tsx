@@ -37,12 +37,21 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center bg-background overflow-hidden px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none z-0" />
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden px-6 lg:px-8">
+        {/* Background Video */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/assets/herobanner.mp4" type="video/mp4" />
+        </video>
         
-        {/* Background Decorative Element */}
-        <FadeIn delay={0.2} direction="none" className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
-        <FadeIn delay={0.4} direction="none" className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Blend Overlay for Text Legibility and Transition */}
+        <div className="absolute inset-0 bg-background/60 z-0" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-0" />
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center space-y-6 md:space-y-8">
           <WordPullUp 
