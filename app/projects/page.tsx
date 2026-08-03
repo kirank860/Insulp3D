@@ -2,6 +2,7 @@
 
 import { FadeIn } from "@/components/ui/fade-in";
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,10 +32,12 @@ export default function Projects() {
         </FadeIn>
         <FadeIn direction="left">
           <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative bg-border">
-            <img 
+            <Image 
               src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bf_edb60f66c7e9b3abcc5e426969c4c1e0_lounge%20chair%20TWO%20TONE.jpg" 
               alt="Lounge Chair" 
-              className="absolute inset-0 w-full h-full object-cover" 
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover" 
             />
           </div>
         </FadeIn>
@@ -71,11 +74,13 @@ export default function Projects() {
             ].map((project, i) => (
               <FadeIn key={i} direction="up">
                 <div className="w-full flex flex-col items-start group">
-                  <div className="w-full bg-border rounded-3xl overflow-hidden shadow-2xl relative mb-6">
-                    <img 
+                  <div className="w-full aspect-[4/3] bg-border rounded-3xl overflow-hidden shadow-2xl relative mb-6">
+                    <Image 
                       src={project.image} 
                       alt={project.title} 
-                      className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700" 
+                      fill
+                      sizes="(max-width: 768px) 100vw, 66vw"
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700" 
                     />
                   </div>
                   <h3 className="text-3xl font-cinzel font-bold text-foreground group-hover:text-primary transition-colors">{project.title}</h3>

@@ -2,6 +2,7 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export default function Services() {
           { title: "RETAIL DISPLAY AND VISUAL MERCHANDISING", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468ad_Asset%2012.svg" },
         ].map((service, i) => (
           <FadeIn key={service.title} delay={0.1 * i} direction="up" className="bg-muted p-10 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors group text-center flex flex-col items-center">
-            <img src={service.icon} alt={service.title} className="w-16 h-16 mb-6 group-hover:scale-110 transition-transform" />
+            <Image src={service.icon} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
             <h3 className="text-xl font-cinzel font-bold text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
           </FadeIn>
         ))}
@@ -44,8 +45,8 @@ export default function Services() {
       <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center">
         <FadeIn direction="right">
           <div className="grid grid-cols-2 gap-4">
-            <img src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344688f_Component%206.svg" alt="Ceiling Element 1" className="w-full h-auto rounded-2xl" />
-            <img src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446890_Frame%2048.png" alt="Ceiling Element 2" className="w-full h-auto rounded-2xl mt-8" />
+            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344688f_Component%206.svg" alt="Ceiling Element 1" width={800} height={800} className="w-full h-auto rounded-2xl" />
+            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446890_Frame%2048.png" alt="Ceiling Element 2" width={800} height={800} className="w-full h-auto rounded-2xl mt-8" />
           </div>
         </FadeIn>
         <FadeIn direction="left">

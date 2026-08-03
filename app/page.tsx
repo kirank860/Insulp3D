@@ -1,6 +1,7 @@
 
 
 import Link from "next/link";
+import Image from "next/image";
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
 import { Metadata } from "next";
@@ -95,7 +96,7 @@ export default function Home() {
             </FadeIn>
             <FadeIn direction="left" delay={0.2}>
               <div className="w-full aspect-square bg-border rounded-3xl overflow-hidden relative shadow-2xl">
-                <img src="/assets/3d1.png" alt="3D Printer" className="absolute inset-0 w-full h-full object-cover" />
+                <Image src="/assets/3d1.png" alt="3D Printer" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               </div>
             </FadeIn>
           </div>
@@ -103,7 +104,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <FadeIn direction="right" delay={0.2} className="order-2 lg:order-1">
               <div className="w-full aspect-square bg-border rounded-3xl overflow-hidden relative shadow-2xl">
-                <img src="/assets/3d2.png" alt="Sustainability" className="absolute inset-0 w-full h-full object-cover" />
+                <Image src="/assets/3d2.png" alt="Sustainability" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               </div>
             </FadeIn>
             <FadeIn direction="left" className="order-1 lg:order-2">
@@ -123,7 +124,7 @@ export default function Home() {
             </FadeIn>
             <FadeIn direction="left" delay={0.2}>
               <div className="w-full aspect-square bg-border rounded-3xl overflow-hidden relative shadow-2xl">
-                <img src="/assets/3d3.png" alt="Global Network" className="absolute inset-0 w-full h-full object-cover" />
+                <Image src="/assets/3d3.png" alt="Global Network" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               </div>
             </FadeIn>
           </div>
@@ -202,7 +203,7 @@ export default function Home() {
                 <Link href="/services" className="block w-full h-full">
                   <div className="relative w-full aspect-square rounded-3xl overflow-hidden mb-4 md:mb-6">
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10" />
-                    <img src={service.img} alt={service.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <Image src={service.img} alt={service.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20">
                       <h3 className="text-xl md:text-2xl font-cinzel font-bold text-white">{service.title}</h3>
                     </div>
@@ -230,7 +231,7 @@ export default function Home() {
               <FadeIn key={industry.title} delay={0.1 * i} className="group relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden cursor-pointer">
                 <Link href="/projects" className="block w-full h-full">
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors z-10" />
-                  <img src={industry.img} alt={industry.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <Image src={industry.img} alt={industry.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 flex items-center justify-center z-20">
                     <h3 className="text-xl font-cinzel font-bold text-white text-center px-4">{industry.title}</h3>
                   </div>

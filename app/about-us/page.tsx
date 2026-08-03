@@ -2,6 +2,7 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -29,10 +30,12 @@ export default function AboutUs() {
         </FadeIn>
         <FadeIn direction="left" delay={0.2}>
           <div className="aspect-[4/5] bg-border rounded-3xl relative overflow-hidden shadow-2xl">
-            <img 
+            <Image 
               src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b6_fb7ba5ab760b3084f89e4cfc22c7f70c_web%20render_edited-min.png" 
               alt="top 3D printed chair by INSCULP3D at Dubai" 
-              className="absolute inset-0 w-full h-full object-cover" 
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover" 
             />
           </div>
         </FadeIn>
@@ -55,7 +58,7 @@ export default function AboutUs() {
               { title: "Innovation", desc: "Developing custom bespoke pieces using advanced 3D printing techniques to showcase new possibilities." },
             ].map((v, i) => (
               <FadeIn key={v.title} delay={0.1 * i} direction="up" className="bg-background/10 p-8 rounded-3xl backdrop-blur-sm border border-primary-foreground/20">
-                <img src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg" alt="icon" className="w-12 h-12 mb-6 opacity-80" style={{ filter: 'brightness(0) invert(1)' }} />
+                <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg" alt="icon" width={48} height={48} className="mb-6 opacity-80" style={{ filter: 'brightness(0) invert(1)' }} />
                 <h3 className="text-2xl font-cinzel font-bold mb-4">{v.title}</h3>
                 <p className="font-josefin font-light text-primary-foreground/80 leading-relaxed">{v.desc}</p>
               </FadeIn>
@@ -129,10 +132,12 @@ export default function AboutUs() {
         </FadeIn>
         <FadeIn direction="left" delay={0.2}>
           <div className="aspect-[3/4] bg-border rounded-3xl relative overflow-hidden shadow-2xl">
-            <img 
+            <Image 
               src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbc1818843b7e0a75d6c_820f1eac47e65ca457ad567c07691576_IMG-20241105-WA0039.avif" 
               alt="Pellets" 
-              className="absolute inset-0 w-full h-full object-cover" 
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover" 
             />
           </div>
         </FadeIn>
@@ -151,8 +156,8 @@ export default function AboutUs() {
               { name: "Bindu Subramani", role: "Managing Director", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468c2_f4ef3785a4956a9ce3de7cff1e6bcd94_20240529_115643-min.png", quote: "3D printing represents a significant advancement at the intersection of technology and design, fostering new opportunities for innovation." },
             ].map((person, i) => (
               <FadeIn key={person.name} delay={0.1 * i} direction="up" className="flex flex-col items-center text-center space-y-6">
-                <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-primary shadow-xl">
-                  <img src={person.img} alt={person.name} className="w-full h-full object-cover" />
+                <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary shadow-xl">
+                  <Image src={person.img} alt={person.name} fill sizes="256px" className="object-cover" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-cinzel font-bold text-foreground">{person.name}</h3>

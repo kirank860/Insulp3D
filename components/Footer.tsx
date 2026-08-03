@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,9 +7,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-2">
           <Link href="/" className="flex items-center gap-2 mb-8">
-            <img 
+            <Image 
               src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344683c_Group.svg" 
               alt="InSculp 3D Logo" 
+              width={200}
+              height={48}
               className="h-12 w-auto object-contain brightness-0 invert" 
             />
           </Link>

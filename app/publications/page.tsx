@@ -2,6 +2,7 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -37,10 +38,12 @@ export default function Publications() {
           <FadeIn key={article.title} delay={0.05 * i} direction="left" className="group cursor-pointer">
             <article className="flex flex-col md:flex-row gap-8 items-center bg-muted p-8 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors">
               <div className="w-full md:w-1/3 aspect-video bg-border rounded-2xl relative overflow-hidden">
-                <img 
+                <Image 
                   src={article.image} 
                   alt={article.title} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
                 />
               </div>
               <div className="w-full md:w-2/3 space-y-4">
