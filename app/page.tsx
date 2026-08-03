@@ -3,10 +3,39 @@
 import Link from "next/link";
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "InSculp 3D is the premier large-format 3D printing and additive manufacturing facility in Dubai. We specialize in custom 3D printed architecture, art, and industrial models.",
+  alternates: {
+    canonical: '/',
+  }
+};
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "InSculp 3D",
+    "image": "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344683c_Group.svg",
+    "@id": "https://www.insculp3d.ae",
+    "url": "https://www.insculp3d.ae",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dubai",
+      "addressCountry": "AE"
+    },
+    "description": "Leading provider of large-scale 3D printing and additive manufacturing in Dubai."
+  };
+
   return (
     <div className="flex flex-col min-h-[calc(100vh-80px)] overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className="relative w-full min-h-screen flex items-center justify-center bg-background overflow-hidden px-6 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none z-0" />

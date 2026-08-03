@@ -2,6 +2,13 @@
 
 import { FadeIn } from "@/components/ui/fade-in";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects | InSculp 3D",
+  description: "View our flagship 3D printing projects. Our portfolio showcases passion, dedication, and innovation in large scale additive manufacturing across Dubai.",
+  alternates: { canonical: '/projects' }
+};
 
 export default function Projects() {
   return (

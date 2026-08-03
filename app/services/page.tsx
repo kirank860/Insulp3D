@@ -2,6 +2,13 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services & Industries | InSculp 3D",
+  description: "Explore our wide array of 3D printing services, from architectural models to bespoke art sculptures. We accommodate all aesthetic preferences and materials.",
+  alternates: { canonical: '/services' }
+};
 
 export default function Services() {
   return (

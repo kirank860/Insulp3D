@@ -2,6 +2,13 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us | InSculp 3D",
+  description: "Get in touch with InSculp 3D in Dubai. Transform your visions into remarkable 3D printed realities with our expert team.",
+  alternates: { canonical: '/contact-us' }
+};
 
 export default function ContactUs() {
   return (

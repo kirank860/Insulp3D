@@ -2,6 +2,13 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Publications | InSculp 3D",
+  description: "Read our latest publications, news, and insights into the world of large-format 3D printing and manufacturing innovations.",
+  alternates: { canonical: '/publications' }
+};
 
 export default function Publications() {
   return (
