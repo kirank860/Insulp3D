@@ -1,4 +1,4 @@
-"use client";
+
 
 import { FadeIn } from "@/components/ui/fade-in";
 import Link from "next/link";

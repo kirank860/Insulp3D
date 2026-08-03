@@ -1,4 +1,4 @@
-"use client";
+
 
 import Link from "next/link";
 import { WordPullUp } from "@/components/ui/word-pull-up";

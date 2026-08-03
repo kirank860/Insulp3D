@@ -1,4 +1,4 @@
-"use client";
+
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
