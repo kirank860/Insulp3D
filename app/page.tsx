@@ -43,7 +43,8 @@ export default function Home() {
           autoPlay 
           loop 
           muted 
-          playsInline 
+          playsInline
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src="/assets/herobanner.mp4" type="video/mp4" />
@@ -198,13 +199,15 @@ export default function Home() {
               { title: "Retail Displays", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbc1818843b7e0a75d6c_820f1eac47e65ca457ad567c07691576_IMG-20241105-WA0039.avif" },
             ].map((service, i) => (
               <FadeIn key={service.title} delay={0.1 * i} direction="up" className="group cursor-pointer">
-                <div className="relative w-full aspect-square rounded-3xl overflow-hidden mb-4 md:mb-6">
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10" />
-                  <img src={service.img} alt={service.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20">
-                    <h3 className="text-xl md:text-2xl font-cinzel font-bold text-white">{service.title}</h3>
+                <Link href="/services" className="block w-full h-full">
+                  <div className="relative w-full aspect-square rounded-3xl overflow-hidden mb-4 md:mb-6">
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10" />
+                    <img src={service.img} alt={service.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20">
+                      <h3 className="text-xl md:text-2xl font-cinzel font-bold text-white">{service.title}</h3>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </FadeIn>
             ))}
           </div>
@@ -224,12 +227,14 @@ export default function Home() {
               { title: "Scale Models", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bb6bca15c9ef87f7bcc0_WhatsApp%20Image%202024-07-16%20at%201.31.05%20PM-4.jpeg" },
               { title: "Retail Display", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/679b72388458dc748e83e1bc_b2aa567d67b672de17f0dd53ae3b0416_GISOU%20NY%20SIDE.png" },
             ].map((industry, i) => (
-              <FadeIn key={industry.title} delay={0.1 * i} className="group relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors z-10" />
-                <img src={industry.img} alt={industry.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 flex items-center justify-center z-20">
-                  <h3 className="text-xl font-cinzel font-bold text-white text-center px-4">{industry.title}</h3>
-                </div>
+              <FadeIn key={industry.title} delay={0.1 * i} className="group relative w-full aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden cursor-pointer">
+                <Link href="/projects" className="block w-full h-full">
+                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors z-10" />
+                  <img src={industry.img} alt={industry.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 flex items-center justify-center z-20">
+                    <h3 className="text-xl font-cinzel font-bold text-white text-center px-4">{industry.title}</h3>
+                  </div>
+                </Link>
               </FadeIn>
             ))}
           </div>
