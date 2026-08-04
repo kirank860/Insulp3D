@@ -15,7 +15,7 @@ export default function Publications() {
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center mb-24">
-        <WordPullUp words="OUR PUBLICATIONS" className="text-5xl md:text-7xl font-cinzel text-foreground mb-8" />
+        <WordPullUp words="OUR PUBLICATIONS" className="text-5xl md:text-7xl font-heading text-foreground mb-8" />
         <FadeIn delay={0.4}>
           <p className="text-xl text-foreground/80 font-josefin font-light max-w-2xl mx-auto">
             Stay updated with our latest thoughts on 3D printing technology, sustainability, and manufacturing innovation.
@@ -50,13 +50,13 @@ export default function Publications() {
                 <div className="flex items-center gap-4 text-sm font-josefin tracking-widest text-primary">
                   <span className="text-foreground/50">{article.date}</span>
                 </div>
-                <h3 className="text-2xl font-cinzel font-bold text-foreground group-hover:text-primary transition-colors">
+                <h3 className="text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
                   {article.title}
                 </h3>
                 <p className="text-foreground/70 font-josefin font-light leading-relaxed">
                   {article.desc}
                 </p>
-                <div className="pt-2 text-primary font-cinzel font-bold tracking-widest text-sm uppercase">Read More ➔</div>
+                <div className="pt-2 text-primary font-heading font-bold tracking-widest text-sm uppercase">Read More ➔</div>
               </div>
             </article>
           </FadeIn>

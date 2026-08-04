@@ -15,7 +15,7 @@ export default function ContactUs() {
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center mb-24">
-        <WordPullUp words="Share your vision, and let us craft it for you" className="text-5xl md:text-6xl font-cinzel text-foreground mb-8" />
+        <WordPullUp words="Share your vision, and let us craft it for you" className="text-5xl md:text-6xl font-heading text-foreground mb-8" />
         <FadeIn delay={0.4}>
           <div className="flex flex-col items-center gap-8">
             <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" alt="Custom 3D Printing" width={800} height={800} className="w-64 h-auto rounded-3xl shadow-xl" />
@@ -28,7 +28,7 @@ export default function ContactUs() {
       
       <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16">
         <FadeIn delay={0.4} direction="right" className="space-y-8">
-          <h2 className="text-4xl font-cinzel font-bold text-foreground">Contact us</h2>
+          <h2 className="text-4xl font-heading font-bold text-foreground">Contact us</h2>
           <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed">
             We thrive on creation, innovation and collaboration. Do you have a detailed design, or simply a vision? Let our team handle it for you. Get in touch with us today or visit us to craft your form.
           </p>
@@ -38,13 +38,13 @@ export default function ContactUs() {
             <p className="text-foreground font-josefin font-light"><strong>Address:</strong> YS International WH 05, Dubai Investment Park, DIP, Dubai, UAE</p>
           </div>
           <div className="space-y-4 pt-8 border-t border-border/50">
-            <h3 className="text-xl font-cinzel font-bold text-primary">Business Hours:</h3>
+            <h3 className="text-xl font-heading font-bold text-primary">Business Hours:</h3>
             <p className="text-foreground font-josefin font-light">Monday - Friday: 9:00 AM - 6:00 PM</p>
             <p className="text-foreground font-josefin font-light">Saturday: 9:00 AM - 6:00 PM</p>
             <p className="text-foreground font-josefin font-light">Sunday: Closed</p>
           </div>
           <div className="space-y-4 pt-8 border-t border-border/50">
-            <h3 className="text-xl font-cinzel font-bold text-primary">Follow Us:</h3>
+            <h3 className="text-xl font-heading font-bold text-primary">Follow Us:</h3>
             <div className="flex gap-4">
               <a href="#" className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446895_facebook%20(1).png" alt="Facebook" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>
               <a href="#" className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446894_instagram%20(1).png" alt="Instagram" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>
@@ -57,33 +57,33 @@ export default function ContactUs() {
           <form className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-cinzel font-bold tracking-widest text-foreground">FIRST NAME</label>
+                <label className="text-sm font-heading font-bold tracking-widest text-foreground">FIRST NAME</label>
                 <input type="text" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-cinzel font-bold tracking-widest text-foreground">LAST NAME</label>
+                <label className="text-sm font-heading font-bold tracking-widest text-foreground">LAST NAME</label>
                 <input type="text" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
               </div>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-cinzel font-bold tracking-widest text-foreground">EMAIL ADDRESS</label>
+                <label className="text-sm font-heading font-bold tracking-widest text-foreground">EMAIL ADDRESS</label>
                 <input type="email" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-cinzel font-bold tracking-widest text-foreground">PHONE NUMBER</label>
+                <label className="text-sm font-heading font-bold tracking-widest text-foreground">PHONE NUMBER</label>
                 <input type="tel" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-cinzel font-bold tracking-widest text-foreground">SUBJECT</label>
+              <label className="text-sm font-heading font-bold tracking-widest text-foreground">SUBJECT</label>
               <input type="text" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-cinzel font-bold tracking-widest text-foreground">MESSAGE</label>
+              <label className="text-sm font-heading font-bold tracking-widest text-foreground">MESSAGE</label>
               <textarea rows={4} className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
             </div>
-            <button type="button" className="w-full py-4 bg-primary text-primary-foreground font-cinzel font-bold tracking-widest rounded-lg transition-all hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]">
+            <button type="button" className="w-full py-4 bg-primary text-primary-foreground font-heading font-bold tracking-widest rounded-lg transition-all hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]">
               SUBMIT
             </button>
           </form>

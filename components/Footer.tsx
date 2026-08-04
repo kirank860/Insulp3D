@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,21 +6,19 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-2">
           <Link href="/" className="flex items-center gap-2 mb-8">
-            <Image 
-              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344683c_Group.svg" 
-              alt="InSculp 3D Logo" 
-              width={200}
-              height={48}
-              className="h-12 w-auto object-contain brightness-0 invert" 
+            <img
+              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344683c_Group.svg"
+              alt="InSculp 3D Logo"
+              className="h-12 w-auto object-contain brightness-0 invert"
             />
           </Link>
           <p className="text-white/70 font-light max-w-sm">
-            Leading provider of large-scale 3D printing and additive manufacturing in Dubai. Trusted by designers, architects, and engineers across the Europe, Middle East & Africa region.
+            Leading provider of Large-scale 3D printing and additive manufacturing in Dubai. Trusted by designers, architects, and engineers across the Europe, Middle East & Africa region.
           </p>
         </div>
-        
+
         <div>
-          <h4 className="font-cinzel font-semibold mb-4 text-white">Quick Links</h4>
+          <h4 className="font-heading font-semibold mb-4 text-white">Quick Links</h4>
           <ul className="space-y-3">
             <li><Link href="/" className="text-white/70 hover:text-white transition-colors">Home</Link></li>
             <li><Link href="/about-us" className="text-white/70 hover:text-white transition-colors">About Us</Link></li>
@@ -31,7 +28,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-cinzel font-semibold mb-4 text-white">Contact</h4>
+          <h4 className="font-heading font-semibold mb-4 text-white">Contact</h4>
           <ul className="space-y-3">
             <li className="text-white/70">Dubai, UAE</li>
             <li><Link href="/contact-us" className="text-white hover:text-white/80 transition-colors">Get in touch ➔</Link></li>

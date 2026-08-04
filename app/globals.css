@@ -15,7 +15,7 @@
   --color-destructive: #DC2626;
   --color-destructive-foreground: #FFFFFF;
   --color-ring: #0C2340;
-  --font-cinzel: "Cinzel", serif;
+  --font-heading: "Montserrat", sans-serif;
   --font-josefin: "Josefin Sans", sans-serif;
 }
 
@@ -53,7 +53,7 @@
     font-family: var(--font-josefin);
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-cinzel);
+    font-family: var(--font-heading);
   }
 }
 

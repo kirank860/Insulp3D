@@ -19,8 +19,8 @@ export default function AboutUs() {
       <section className="px-6 lg:px-8 mb-32 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         <FadeIn direction="right">
           <div className="space-y-8">
-            <WordPullUp words="Our Story" className="text-left text-5xl md:text-7xl font-cinzel text-foreground mb-4" />
-            <h2 className="text-3xl font-cinzel font-bold text-primary">Crafting the Future with 3D Printing</h2>
+            <WordPullUp words="Our Story" className="text-left text-5xl md:text-7xl font-heading text-foreground mb-4" />
+            <h2 className="text-3xl font-heading font-bold text-primary">Crafting the Future with 3D Printing</h2>
             <p className="text-lg text-foreground/80 font-josefin font-light leading-relaxed">
               We are artists, creators, and innovators, and we understand the power of creativity. With over two decades of experience, we have mastered sculpting innovation and pushed the limits of large-format 3D printing while incorporating artistic finesse into our work. <br/><br/>
               Our expertise spans a diverse range of materials, manufacturing techniques, and methods, aided by technology and skilled artisans who work tirelessly to bring our clients&apos; visions to life. Our commitment to unlocking our clients&apos; creative vision and transforming it into a tangible, awe-inspiring reality is unwavering. <br/><br/>
@@ -45,7 +45,7 @@ export default function AboutUs() {
       <section className="w-full bg-primary text-primary-foreground py-24 px-6 lg:px-8 mb-32 relative">
         <div className="max-w-7xl mx-auto">
           <FadeIn direction="up">
-            <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-center mb-6">OUR VISION</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-6">OUR VISION</h2>
             <p className="text-xl font-josefin font-light text-center max-w-3xl mx-auto mb-16 text-primary-foreground/90">
               Setting global standards in digital fabrication, we transform spaces with pioneering 3D printing technologies.
             </p>
@@ -59,7 +59,7 @@ export default function AboutUs() {
             ].map((v, i) => (
               <FadeIn key={v.title} delay={0.1 * i} direction="up" className="bg-background/10 p-8 rounded-3xl backdrop-blur-sm border border-primary-foreground/20">
                 <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg" alt="icon" width={48} height={48} className="mb-6 opacity-80" style={{ filter: 'brightness(0) invert(1)' }} />
-                <h3 className="text-2xl font-cinzel font-bold mb-4">{v.title}</h3>
+                <h3 className="text-2xl font-heading font-bold mb-4">{v.title}</h3>
                 <p className="font-josefin font-light text-primary-foreground/80 leading-relaxed">{v.desc}</p>
               </FadeIn>
             ))}
@@ -70,7 +70,7 @@ export default function AboutUs() {
       {/* Our Mission */}
       <section className="px-6 lg:px-8 mb-32 max-w-4xl mx-auto text-center">
         <FadeIn direction="up">
-          <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-foreground mb-8">OUR MISSION</h2>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-8">OUR MISSION</h2>
           <p className="text-lg font-josefin font-light text-foreground/80 leading-relaxed">
             Our mission is to unleash the full potential of creativity and bring it to life in breathtaking ways. Through cutting-edge technology and skilled artisans, we are committed to excellence, creating awe-inspiring works of art that transform perceptions. <br/><br/>
             We aim to inspire others to embrace their creativity and strive for greatness, making the world a more beautiful and uplifting place for all. To be the pioneers of creativity and innovation in art and design, challenging the boundaries of possibility and igniting the imagination to create a brighter future for everyone.
@@ -81,7 +81,7 @@ export default function AboutUs() {
       {/* Our Values & Code of Conduct */}
       <section className="px-6 lg:px-8 mb-32 max-w-5xl mx-auto">
         <FadeIn direction="up">
-          <h2 className="text-4xl font-cinzel font-bold text-foreground text-center mb-6">OUR VALUES & CODE OF CONDUCT</h2>
+          <h2 className="text-4xl font-heading font-bold text-foreground text-center mb-6">OUR VALUES & CODE OF CONDUCT</h2>
           <p className="text-center font-josefin font-light text-foreground/70 mb-12">
             As pioneers in the realms of creativity and innovation in art and design, we uphold the following principles.
           </p>
@@ -95,7 +95,7 @@ export default function AboutUs() {
             { title: "Integrity", desc: "We uphold a standard of integrity in our practices, ensuring that our creativity is groundbreaking and respectful of others and their values." },
           ].map((v, i) => (
             <FadeIn key={v.title} delay={0.1 * i} direction="left" className="flex flex-col md:flex-row gap-4 md:gap-12 p-8 bg-muted rounded-2xl border border-border/50 hover:border-primary/50 transition-colors items-center md:items-start">
-              <h3 className="w-full md:w-1/3 text-2xl font-cinzel font-bold text-primary whitespace-nowrap">{v.title}</h3>
+              <h3 className="w-full md:w-1/3 text-2xl font-heading font-bold text-primary whitespace-nowrap">{v.title}</h3>
               <p className="w-full md:w-2/3 font-josefin font-light text-foreground/80">{v.desc}</p>
             </FadeIn>
           ))}
@@ -110,7 +110,7 @@ export default function AboutUs() {
       {/* Our Core Values */}
       <section className="px-6 lg:px-8 mb-32 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <FadeIn direction="right" className="space-y-8">
-          <h2 className="text-4xl font-cinzel font-bold text-foreground mb-8">Our Core Values</h2>
+          <h2 className="text-4xl font-heading font-bold text-foreground mb-8">Our Core Values</h2>
           <div className="space-y-6">
             {[
               { title: "Innovation", desc: "Pushing boundaries with every project." },
@@ -122,7 +122,7 @@ export default function AboutUs() {
               { title: "Craftsmanship", desc: "We transform designs into forms, showcasing our dedication to quality in every piece." },
             ].map((v, i) => (
               <div key={v.title} className="border-b border-border pb-4">
-                <h3 className="text-xl font-cinzel font-bold text-foreground mb-2 flex items-center gap-2">
+                <h3 className="text-xl font-heading font-bold text-foreground mb-2 flex items-center gap-2">
                   <span className="text-primary">▸</span> {v.title}
                 </h3>
                 <p className="font-josefin font-light text-foreground/70 pl-6">{v.desc}</p>
@@ -147,7 +147,7 @@ export default function AboutUs() {
       <section className="w-full bg-muted py-24 px-6 lg:px-8 mb-32">
         <div className="max-w-7xl mx-auto">
           <FadeIn direction="up">
-            <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-center mb-16 text-foreground">OUR VISIONARIES</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 text-foreground">OUR VISIONARIES</h2>
           </FadeIn>
           <div className="grid md:grid-cols-3 gap-12">
             {[
@@ -160,7 +160,7 @@ export default function AboutUs() {
                   <Image src={person.img} alt={person.name} fill sizes="256px" className="object-cover" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-cinzel font-bold text-foreground">{person.name}</h3>
+                  <h3 className="text-2xl font-heading font-bold text-foreground">{person.name}</h3>
                   <p className="font-josefin font-bold text-primary tracking-widest uppercase text-sm mt-1 mb-4">{person.role}</p>
                   <p className="font-josefin font-light text-foreground/80 italic">&quot;{person.quote}&quot;</p>
                 </div>
@@ -173,7 +173,7 @@ export default function AboutUs() {
       {/* Why Choose Us */}
       <section className="px-6 lg:px-8 mb-32 max-w-7xl mx-auto">
         <FadeIn direction="up">
-          <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-center mb-6 text-foreground">WHY CHOOSE US?</h2>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-6 text-foreground">WHY CHOOSE US?</h2>
           <p className="text-center font-josefin font-light text-foreground/80 max-w-4xl mx-auto mb-16">
             In an industry where traditional manufacturing and standard 3D printing often fall short, InSculp excels by addressing key pain points such as customization constraints, scalability issues, sustainability concerns, and extended lead times. We leverage large format 3D printing to transform these challenges into opportunities for innovation and excellence:
           </p>
@@ -193,7 +193,7 @@ export default function AboutUs() {
             <FadeIn key={v.title} delay={0.05 * i} direction="up" className="flex gap-4 items-start">
               <div className="mt-1 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary">✓</div>
               <div>
-                <strong className="font-cinzel font-bold text-foreground block mb-1">{v.title}:</strong>
+                <strong className="font-heading font-bold text-foreground block mb-1">{v.title}:</strong>
                 <span className="font-josefin font-light text-foreground/70">{v.desc}</span>
               </div>
             </FadeIn>
@@ -206,7 +206,7 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto">
           <FadeIn direction="up">
             <p className="text-center font-josefin tracking-widest text-primary uppercase text-sm mb-2">KIND-WORDS</p>
-            <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-center mb-16">CLIENTS</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16">CLIENTS</h2>
           </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -217,7 +217,7 @@ export default function AboutUs() {
               "Even though we are a 3D printing company, our core competency is in crafting forms."
             ].map((quote, i) => (
               <FadeIn key={i} delay={0.1 * i} direction="up" className="bg-background/10 p-8 rounded-3xl backdrop-blur-sm border border-background/20">
-                <div className="text-primary text-4xl font-cinzel mb-4">&quot;</div>
+                <div className="text-primary text-4xl font-heading mb-4">&quot;</div>
                 <p className="font-josefin font-light text-background/90 leading-relaxed italic">{quote}</p>
               </FadeIn>
             ))}
@@ -228,7 +228,7 @@ export default function AboutUs() {
       {/* Our Technology */}
       <section className="px-6 lg:px-8 mb-24 max-w-7xl mx-auto">
         <FadeIn direction="up">
-          <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-center mb-6 text-foreground">Our Technology</h2>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-6 text-foreground">Our Technology</h2>
           <p className="text-center font-josefin font-light text-foreground/80 max-w-3xl mx-auto mb-16 italic">
             We harness cutting-edge 3D printing technologies to deliver exceptional quality and precision. Our capabilities extend from large format 3D printing to post processing.
           </p>
@@ -241,7 +241,7 @@ export default function AboutUs() {
             { title: "Sustainable 3D Printing", desc: "We focus on sustainability by using biodegradable materials, energy-efficient processes, and recycling systems for 3D print waste, supporting a circular economy." },
           ].map((tech, i) => (
             <FadeIn key={tech.title} delay={0.1 * i} direction="up" className="bg-muted p-8 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors">
-              <h3 className="text-2xl font-cinzel font-bold text-primary mb-4">{tech.title}</h3>
+              <h3 className="text-2xl font-heading font-bold text-primary mb-4">{tech.title}</h3>
               <p className="font-josefin font-light text-foreground/80 leading-relaxed">{tech.desc}</p>
             </FadeIn>
           ))}

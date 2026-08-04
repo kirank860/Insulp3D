@@ -17,7 +17,7 @@ export default function Projects() {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center py-16">
         <FadeIn direction="right" className="space-y-6">
-          <h1 className="text-5xl md:text-7xl font-cinzel font-bold text-foreground leading-tight">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground leading-tight">
             OUR SELECTIVE PROJECTS
           </h1>
           <p className="text-xl text-foreground/80 font-josefin font-light max-w-lg leading-relaxed">
@@ -25,7 +25,7 @@ export default function Projects() {
           </p>
           <Link 
             href="/contact-us" 
-            className="inline-block mt-4 px-8 py-4 bg-primary text-primary-foreground font-cinzel font-bold tracking-widest rounded-full transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-lg shadow-primary/25"
+            className="inline-block mt-4 px-8 py-4 bg-primary text-primary-foreground font-heading font-bold tracking-widest rounded-full transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-lg shadow-primary/25"
           >
             LEARN MORE
           </Link>
@@ -56,7 +56,7 @@ export default function Projects() {
                 "AUTOMOBILE TRANSFORMATION",
                 "RETAIL DISPLAY UNITS"
               ].map((category, i) => (
-                <div key={i} className="text-2xl font-cinzel font-bold text-foreground/40 hover:text-primary transition-colors cursor-pointer">
+                <div key={i} className="text-2xl font-heading font-bold text-foreground/40 hover:text-primary transition-colors cursor-pointer">
                   {category}
                 </div>
               ))}
@@ -83,7 +83,7 @@ export default function Projects() {
                       className="object-cover transform group-hover:scale-105 transition-transform duration-700" 
                     />
                   </div>
-                  <h3 className="text-3xl font-cinzel font-bold text-foreground group-hover:text-primary transition-colors">{project.title}</h3>
+                  <h3 className="text-3xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">{project.title}</h3>
                 </div>
               </FadeIn>
             ))}

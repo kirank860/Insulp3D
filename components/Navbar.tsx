@@ -134,7 +134,7 @@ export default function Navbar() {
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
-                      "block text-2xl font-cinzel font-bold tracking-widest transition-colors",
+                      "block text-2xl font-heading font-bold tracking-widest transition-colors",
                       pathname === item.href ? "text-primary" : "text-foreground hover:text-primary"
                     )}
                   >
