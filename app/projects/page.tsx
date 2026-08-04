@@ -62,17 +62,14 @@ export default async function Projects() {
           
           {/* Left Sticky Navigation */}
           <div className="hidden md:block relative">
-            <div className="sticky top-32 space-y-6 flex flex-col">
-              {[
-                "ART AND SCULPTURES",
-                "VISUAL MERCHANDISING",
-                "AUTOMOBILE TRANSFORMATION",
-                "RETAIL DISPLAY UNITS"
-              ].map((category, i) => (
-                <div key={i} className="text-2xl font-heading font-bold text-foreground/40 hover:text-primary transition-colors cursor-pointer">
-                  {category}
-                </div>
-              ))}
+            <div className="sticky top-32 flex flex-col max-h-[350px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-primary/20 hover:scrollbar-thumb-primary/50 scrollbar-track-transparent">
+              <div className="space-y-6 flex flex-col">
+                {displayProjects.map((project: any, i: number) => (
+                  <a href={`#project-${i}`} key={i} className="text-2xl font-heading font-bold text-foreground/40 hover:text-primary transition-colors cursor-pointer shrink-0">
+                    {project.title}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -80,17 +77,22 @@ export default async function Projects() {
           <div className="space-y-24">
             {displayProjects.map((project: any, i: number) => (
               <FadeIn key={i} direction="up">
-                <div className="w-full flex flex-col items-start group">
+                <div id={`project-${i}`} className="w-full flex flex-col items-start group scroll-mt-48">
                   <div className="w-full aspect-[4/3] bg-border rounded-3xl overflow-hidden shadow-2xl relative mb-6">
                     <Image 
                       src={project.image?.asset ? urlForImage(project.image).url() : project.image} 
                       alt={project.title} 
                       fill
                       sizes="(max-width: 768px) 100vw, 66vw"
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-700" 
+                      className="object-cover group-hover:scale-105 transition-transform duration-700" 
                     />
                   </div>
-                  <h3 className="text-3xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">{project.title}</h3>
+                  <h3 className="text-2xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                    {project.title}
+                  </h3>
+                  <p className="text-base md:text-xl text-foreground/80 font-josefin font-light leading-relaxed mb-8">
+                    {project.description}
+                  </p>
                 </div>
               </FadeIn>
             ))}

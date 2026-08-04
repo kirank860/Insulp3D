@@ -42,8 +42,8 @@ export default async function Publications() {
       
       <div className="max-w-4xl mx-auto space-y-12">
         {displayPublications.map((article: any, i: number) => (
-          <FadeIn key={article.title} delay={0.05 * i} direction="left" className="group cursor-pointer">
-            <article className="flex flex-col md:flex-row gap-8 items-center bg-muted p-8 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors">
+          <FadeIn key={article.title} delay={0.05 * i} direction="left" className="group cursor-pointer w-full">
+            <article className="flex flex-col md:flex-row gap-8 items-center bg-muted p-8 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors w-full">
               <div className="w-full md:w-1/3 aspect-video bg-border rounded-2xl relative overflow-hidden">
                 <Image 
                   src={article.image?.asset ? urlForImage(article.image).url() : article.image} 
@@ -53,14 +53,14 @@ export default async function Publications() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500" 
                 />
               </div>
-              <div className="w-full md:w-2/3 space-y-4">
+              <div className="w-full md:w-2/3 space-y-4 min-w-0">
                 <div className="flex items-center gap-4 text-sm font-josefin tracking-widest text-primary">
                   <span className="text-foreground/50">{article.date}</span>
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors break-words">
                   {article.title}
                 </h3>
-                <p className="text-foreground/70 font-josefin font-light leading-relaxed">
+                <p className="text-sm md:text-base text-foreground/70 font-josefin font-light leading-relaxed break-words line-clamp-3">
                   {article.description || article.desc}
                 </p>
                 <div className="pt-2 text-primary font-heading font-bold tracking-widest text-sm uppercase">Read More ➔</div>
