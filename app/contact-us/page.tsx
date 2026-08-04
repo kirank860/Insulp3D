@@ -2,6 +2,7 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import ContactForm from "@/components/ContactForm";
 import Image from "next/image";
 import { Metadata } from "next";
 
@@ -54,39 +55,7 @@ export default function ContactUs() {
         </FadeIn>
 
         <FadeIn delay={0.6} direction="left" className="bg-muted p-10 rounded-3xl shadow-2xl border border-border/50">
-          <form className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-sm font-heading font-bold tracking-widest text-foreground">FIRST NAME</label>
-                <input type="text" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-heading font-bold tracking-widest text-foreground">LAST NAME</label>
-                <input type="text" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-sm font-heading font-bold tracking-widest text-foreground">EMAIL ADDRESS</label>
-                <input type="email" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-heading font-bold tracking-widest text-foreground">PHONE NUMBER</label>
-                <input type="tel" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-heading font-bold tracking-widest text-foreground">SUBJECT</label>
-              <input type="text" className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-heading font-bold tracking-widest text-foreground">MESSAGE</label>
-              <textarea rows={4} className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
-            </div>
-            <button type="button" className="w-full py-4 bg-primary text-primary-foreground font-heading font-bold tracking-widest rounded-lg transition-all hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]">
-              SUBMIT
-            </button>
-          </form>
+          <ContactForm />
         </FadeIn>
       </div>
     </div>

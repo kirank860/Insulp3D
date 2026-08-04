@@ -4,6 +4,8 @@ import { FadeIn } from "@/components/ui/fade-in";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import { client } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
 
 export const metadata: Metadata = {
   title: "Projects | InSculp 3D",
@@ -11,7 +13,18 @@ export const metadata: Metadata = {
   alternates: { canonical: '/projects' }
 };
 
-export default function Projects() {
+export default async function Projects() {
+  const projects = await client.fetch(`*[_type == "project"] | order(_createdAt desc)`);
+  
+  const fallbackProjects = [
+    { title: "ART AND SCULPTURES", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798d60700323216feaa583d_0284f828223d6f3f5000536e9914d54b_PEACOCK%20FRONT.png" },
+    { title: "VISUAL MERCHANDISING", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/68021546243cea9672fc603a_WhatsApp%20Image%202024-11-22%20at%2011.25.06%20AM-3.jpeg" },
+    { title: "ART AND SCULPTURES", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446891_f0173e3520ccb2a6a0517d99d375fa70_Frame%2050.avif" },
+    { title: "AUTOMOBILE TRANSFORMATION", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc1ba1a6bbd3ca34f680_WhatsApp%20Image%202024-09-24%20at%2015.29.04_1a69ca40.jpg" },
+    { title: "RETAIL DISPLAY UNITS", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbab4bb5b53988f2685d_IMG-20241105-WA0040.jpg" },
+  ];
+
+  const displayProjects = projects.length > 0 ? projects : fallbackProjects;
   return (
     <div className="flex flex-col min-h-screen pt-24 pb-24 px-6 lg:px-8 bg-background">
       {/* Hero Section */}
@@ -65,18 +78,12 @@ export default function Projects() {
 
           {/* Right Scrolling Images */}
           <div className="space-y-24">
-            {[
-              { title: "ART AND SCULPTURES", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798d60700323216feaa583d_0284f828223d6f3f5000536e9914d54b_PEACOCK%20FRONT.png" },
-              { title: "VISUAL MERCHANDISING", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/68021546243cea9672fc603a_WhatsApp%20Image%202024-11-22%20at%2011.25.06%20AM-3.jpeg" },
-              { title: "ART AND SCULPTURES", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446891_f0173e3520ccb2a6a0517d99d375fa70_Frame%2050.avif" },
-              { title: "AUTOMOBILE TRANSFORMATION", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc1ba1a6bbd3ca34f680_WhatsApp%20Image%202024-09-24%20at%2015.29.04_1a69ca40.jpg" },
-              { title: "RETAIL DISPLAY UNITS", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbab4bb5b53988f2685d_IMG-20241105-WA0040.jpg" },
-            ].map((project, i) => (
+            {displayProjects.map((project: any, i: number) => (
               <FadeIn key={i} direction="up">
                 <div className="w-full flex flex-col items-start group">
                   <div className="w-full aspect-[4/3] bg-border rounded-3xl overflow-hidden shadow-2xl relative mb-6">
                     <Image 
-                      src={project.image} 
+                      src={project.image?.asset ? urlForImage(project.image).url() : project.image} 
                       alt={project.title} 
                       fill
                       sizes="(max-width: 768px) 100vw, 66vw"
