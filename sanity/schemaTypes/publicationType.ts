@@ -12,6 +12,16 @@ export const publicationType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'date',
       title: 'Publication Date',
       type: 'date',
@@ -19,7 +29,7 @@ export const publicationType = defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Short Excerpt / Description',
       type: 'text',
       validation: (rule) => rule.required(),
     }),
@@ -31,6 +41,11 @@ export const publicationType = defineType({
         hotspot: true,
       },
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'body',
+      title: 'Full Article Body',
+      type: 'blockContent',
     }),
   ],
 })

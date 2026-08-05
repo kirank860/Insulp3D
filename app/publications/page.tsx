@@ -1,8 +1,8 @@
-
-
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
-import Image from "next/image";
+import { ParallaxImage } from "@/components/gsap/ParallaxImage";
+import { toProperCase } from "@/lib/utils";
+import Link from "next/link";
 import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: "Read our latest publications, news, and insights into the world of large-format 3D printing and manufacturing innovations.",
   alternates: { canonical: '/publications' }
 };
+
+export const revalidate = 60;
 
 export default async function Publications() {
   const publications = await client.fetch(`*[_type == "publication"] | order(date desc)`);
@@ -29,45 +31,104 @@ export default async function Publications() {
   ];
 
   const displayPublications = publications.length > 0 ? publications : fallbackPublications;
+  const featuredArticle = displayPublications[0];
+  const gridArticles = displayPublications.slice(1);
+
   return (
-    <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto text-center mb-24">
-        <WordPullUp words="OUR PUBLICATIONS" className="text-5xl md:text-7xl font-heading text-foreground mb-8" />
+    <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8 bg-background">
+      {/* Header */}
+      <div className="max-w-7xl mx-auto w-full text-center mb-16">
+        <WordPullUp words="Editorial" className="text-5xl md:text-8xl font-heading font-black text-foreground mb-6 uppercase tracking-wider" />
         <FadeIn delay={0.4}>
-          <p className="text-xl text-foreground/80 font-josefin font-light max-w-2xl mx-auto">
-            Stay updated with our latest thoughts on 3D printing technology, sustainability, and manufacturing innovation.
+          <p className="text-lg md:text-2xl text-foreground/70 font-josefin font-light max-w-3xl mx-auto uppercase tracking-widest">
+            Insights on 3D printing technology, sustainability, and manufacturing innovation.
           </p>
         </FadeIn>
       </div>
-      
-      <div className="max-w-4xl mx-auto space-y-12">
-        {displayPublications.map((article: any, i: number) => (
-          <FadeIn key={article.title} delay={0.05 * i} direction="left" className="group cursor-pointer w-full">
-            <article className="flex flex-col md:flex-row gap-8 items-center bg-muted p-8 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors w-full">
-              <div className="w-full md:w-1/3 aspect-video bg-border rounded-2xl relative overflow-hidden">
-                <Image 
-                  src={article.image?.asset ? urlForImage(article.image).url() : article.image} 
-                  alt={article.title} 
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
+
+      <div className="max-w-7xl mx-auto w-full space-y-8">
+        {/* Featured Article */}
+        {featuredArticle && (
+          <FadeIn delay={0.6} direction="up" className="w-full h-[60vh] md:h-[70vh] group cursor-pointer">
+            <Link 
+              href={featuredArticle.slug?.current ? `/publications/${featuredArticle.slug.current}` : `#`}
+              className="relative w-full h-full rounded-3xl overflow-hidden block shadow-2xl border border-border/50 group-hover:border-primary/50 transition-colors duration-700"
+            >
+              <div className="absolute inset-0">
+                <ParallaxImage 
+                  src={featuredArticle.image?.asset ? urlForImage(featuredArticle.image).url() : featuredArticle.image} 
+                  alt={featuredArticle.title} 
+                  className="w-full h-full scale-100 group-hover:scale-[1.03] transition-transform duration-[1.5s] ease-out object-cover" 
+                  speed={1.05}
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none transition-opacity duration-700 group-hover:opacity-90" />
               </div>
-              <div className="w-full md:w-2/3 space-y-4 min-w-0">
-                <div className="flex items-center gap-4 text-sm font-josefin tracking-widest text-primary">
-                  <span className="text-foreground/50">{article.date}</span>
+              
+              <div className="absolute inset-0 p-6 md:p-12 lg:p-16 flex flex-col justify-end z-10">
+                <div className="mt-auto">
+                  <span className="inline-block px-4 py-1.5 bg-primary text-primary-foreground font-josefin tracking-[0.2em] uppercase text-xs font-bold rounded-full shadow-2xl backdrop-blur-md mb-6 w-max border border-primary/20">
+                    Featured • {featuredArticle.date || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                  </span>
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-white uppercase leading-tight mb-4 group-hover:text-white/90 transition-colors duration-500 drop-shadow-xl max-w-4xl line-clamp-4">
+                    {toProperCase(featuredArticle.title)}
+                  </h2>
+                  <p className="text-base md:text-lg lg:text-xl text-white font-josefin font-normal leading-relaxed max-w-3xl line-clamp-2 md:line-clamp-3 drop-shadow-md">
+                    {featuredArticle.description || featuredArticle.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors break-words">
-                  {article.title}
-                </h3>
-                <p className="text-sm md:text-base text-foreground/70 font-josefin font-light leading-relaxed break-words line-clamp-3">
-                  {article.description || article.desc}
-                </p>
-                <div className="pt-2 text-primary font-heading font-bold tracking-widest text-sm uppercase">Read More ➔</div>
               </div>
-            </article>
+            </Link>
           </FadeIn>
-        ))}
+        )}
+
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {gridArticles.map((article: any, i: number) => {
+            const href = article.slug?.current ? `/publications/${article.slug.current}` : `#`;
+            // Make every 4th article span 2 columns if on large screens, creating a nice masonry feel
+            const isWide = i % 5 === 0 || i % 5 === 3;
+            
+            return (
+              <FadeIn 
+                key={article.title} 
+                delay={0.1 * (i % 3)} 
+                direction="up" 
+                className={`group cursor-pointer ${isWide ? 'md:col-span-2' : 'col-span-1'}`}
+              >
+                <Link href={href} className="flex flex-col h-full bg-muted/30 p-5 md:p-6 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors w-full shadow-lg">
+                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 border border-border/50">
+                    <ParallaxImage 
+                      src={article.image?.asset ? urlForImage(article.image).url() : article.image} 
+                      alt={article.title} 
+                      className="w-full h-full bg-border group-hover:scale-[1.05] transition-transform duration-700 ease-out object-cover" 
+                      speed={1.05}
+                    />
+                    <div className="absolute top-4 left-4 z-10">
+                       <span className="inline-block px-3 py-1 bg-background/90 text-foreground font-josefin tracking-[0.1em] uppercase text-[10px] font-bold rounded-full shadow-lg backdrop-blur-md border border-border">
+                         {article.date}
+                       </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col flex-1 px-2">
+                    <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors break-words uppercase leading-tight mb-4 flex-1">
+                      {toProperCase(article.title)}
+                    </h3>
+                    <p className="text-sm md:text-base text-foreground/90 font-josefin font-normal leading-relaxed break-words line-clamp-3 mb-6">
+                      {article.description || article.desc}
+                    </p>
+                    <div className="mt-auto text-primary font-heading font-bold tracking-widest text-xs uppercase flex items-center gap-2 group-hover:gap-4 transition-all duration-300">
+                      Read Article
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              </FadeIn>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

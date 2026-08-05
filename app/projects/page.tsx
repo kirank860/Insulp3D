@@ -1,11 +1,13 @@
 
 
 import { FadeIn } from "@/components/ui/fade-in";
+import { ParallaxImage } from "@/components/gsap/ParallaxImage";
+import { VelocityScroll } from "@/components/gsap/VelocityScroll";
+import { MagneticButton } from "@/components/gsap/MagneticButton";
+import { ProjectGallery } from "@/components/ProjectGallery";
 import Link from "next/link";
-import Image from "next/image";
 import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
-import { urlForImage } from "@/sanity/lib/image";
 
 export const metadata: Metadata = {
   title: "Projects | InSculp 3D",
@@ -25,79 +27,58 @@ export default async function Projects() {
   ];
 
   const displayProjects = projects.length > 0 ? projects : fallbackProjects;
+  
   return (
     <div className="flex flex-col min-h-screen pt-24 pb-24 px-6 lg:px-8 bg-background">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center py-16">
-        <FadeIn direction="right" className="space-y-6">
-          <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground leading-tight">
-            OUR SELECTIVE PROJECTS
+        <FadeIn direction="right" className="space-y-6 relative z-10">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground leading-tight uppercase">
+            Our Selective Projects
           </h1>
           <p className="text-xl text-foreground/80 font-josefin font-light max-w-lg leading-relaxed">
             Our flagship projects reflect our team&apos;s passion, love, and dedication towards printing, design, and innovation in crafting each piece.
           </p>
-          <Link 
-            href="/contact-us" 
-            className="inline-block mt-4 px-8 py-4 bg-primary text-primary-foreground font-heading font-bold tracking-widest rounded-full transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-lg shadow-primary/25"
-          >
-            LEARN MORE
-          </Link>
+          <MagneticButton>
+            <Link 
+              href="/contact-us#contact-form" 
+              className="inline-block mt-4 px-10 py-5 bg-primary text-primary-foreground font-heading font-bold tracking-widest rounded-full transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-xl shadow-primary/25 uppercase"
+            >
+              Start Your Project
+            </Link>
+          </MagneticButton>
         </FadeIn>
-        <FadeIn direction="left">
-          <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative bg-border">
-            <Image 
+        <FadeIn direction="left" className="h-full w-full">
+          <VelocityScroll intensity={1.5}>
+            <ParallaxImage 
               src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bf_edb60f66c7e9b3abcc5e426969c4c1e0_lounge%20chair%20TWO%20TONE.jpg" 
               alt="Lounge Chair" 
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover" 
+              className="w-full aspect-[4/3] rounded-3xl shadow-2xl bg-border"
+              speed={1.15}
             />
-          </div>
+          </VelocityScroll>
         </FadeIn>
       </section>
 
-      {/* Sticky Gallery Section */}
-      <section className="max-w-7xl mx-auto w-full py-24">
-        <div className="grid md:grid-cols-[1fr_2fr] gap-16 relative">
-          
-          {/* Left Sticky Navigation */}
-          <div className="hidden md:block relative">
-            <div className="sticky top-32 flex flex-col max-h-[350px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-primary/20 hover:scrollbar-thumb-primary/50 scrollbar-track-transparent">
-              <div className="space-y-6 flex flex-col">
-                {displayProjects.map((project: any, i: number) => (
-                  <a href={`#project-${i}`} key={i} className="text-2xl font-heading font-bold text-foreground/40 hover:text-primary transition-colors cursor-pointer shrink-0">
-                    {project.title}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
+      {/* GSAP Scroll Spy Gallery */}
+      <ProjectGallery projects={displayProjects} />
 
-          {/* Right Scrolling Images */}
-          <div className="space-y-24">
-            {displayProjects.map((project: any, i: number) => (
-              <FadeIn key={i} direction="up">
-                <div id={`project-${i}`} className="w-full flex flex-col items-start group scroll-mt-48">
-                  <div className="w-full aspect-[4/3] bg-border rounded-3xl overflow-hidden shadow-2xl relative mb-6">
-                    <Image 
-                      src={project.image?.asset ? urlForImage(project.image).url() : project.image} 
-                      alt={project.title} 
-                      fill
-                      sizes="(max-width: 768px) 100vw, 66vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700" 
-                    />
-                  </div>
-                  <h3 className="text-2xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                    {project.title}
-                  </h3>
-                  <p className="text-base md:text-xl text-foreground/80 font-josefin font-light leading-relaxed mb-8">
-                    {project.description}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
+      {/* CTA Footer */}
+      <section className="w-full max-w-7xl mx-auto mt-12 bg-primary text-primary-foreground rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 uppercase">Bring Your Idea to Life</h2>
+          <p className="text-xl md:text-2xl font-josefin font-light mb-10 text-primary-foreground/90">
+            From intricate art sculptures to massive retail displays, we have the technology to build it.
+          </p>
+          <MagneticButton>
+            <Link 
+              href="/contact-us#contact-form" 
+              className="inline-block px-10 py-5 bg-background text-foreground font-heading font-bold tracking-widest uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl"
+            >
+              Contact Our Engineers
+            </Link>
+          </MagneticButton>
         </div>
       </section>
     </div>

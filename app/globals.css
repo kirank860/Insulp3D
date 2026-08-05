@@ -17,6 +17,12 @@
   --color-ring: #0C2340;
   --font-heading: "Montserrat", sans-serif;
   --font-josefin: "Josefin Sans", sans-serif;
+  --animate-marquee: marquee var(--duration, 40s) linear infinite;
+  
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap))); }
+  }
 }
 
 @layer base {

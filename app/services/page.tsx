@@ -2,6 +2,10 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import { ParallaxImage } from "@/components/gsap/ParallaxImage";
+import { TextReveal } from "@/components/gsap/TextReveal";
+import { MagneticButton } from "@/components/gsap/MagneticButton";
+import { VelocityScroll } from "@/components/gsap/VelocityScroll";
 import Image from "next/image";
 import { Metadata } from "next";
 
@@ -15,7 +19,7 @@ export default function Services() {
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center mb-24">
-        <WordPullUp words="OUR SERVICES AND INDUSTRIES" className="text-5xl md:text-7xl font-heading text-foreground mb-8" />
+        <WordPullUp words="Our Services & Industries" className="text-5xl md:text-7xl font-heading text-foreground mb-8 uppercase" />
         <FadeIn delay={0.4}>
           <p className="text-xl text-foreground/80 font-josefin font-light max-w-2xl mx-auto">
             We provide a wide array of services to meet your needs, all conveniently available under one roof. With our in-house capabilities, we can accommodate various aesthetic preferences, whether you&apos;re seeking a raw finish or something more specialized, such as painting and mixed media production.
@@ -44,20 +48,152 @@ export default function Services() {
       {/* Architectural Ceiling Feature */}
       <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center">
         <FadeIn direction="right">
-          <div className="grid grid-cols-2 gap-4">
-            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344688f_Component%206.svg" alt="Ceiling Element 1" width={800} height={800} className="w-full h-auto rounded-2xl" />
-            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446890_Frame%2048.png" alt="Ceiling Element 2" width={800} height={800} className="w-full h-auto rounded-2xl mt-8" />
-          </div>
+          <VelocityScroll intensity={1.5}>
+            <div className="grid grid-cols-2 gap-4">
+              <ParallaxImage 
+                src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344688f_Component%206.svg" 
+                alt="3D Printed Architectural Ceiling Panels Dubai" 
+                className="w-full aspect-square rounded-2xl bg-border" 
+                speed={1.1}
+              />
+              <ParallaxImage 
+                src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446890_Frame%2048.png" 
+                alt="Custom Additive Manufacturing Ceiling Elements" 
+                className="w-full aspect-[4/5] rounded-2xl bg-border mt-8" 
+                speed={1.2}
+              />
+            </div>
+          </VelocityScroll>
         </FadeIn>
-        <FadeIn direction="left">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">Architectural Ceiling</h2>
-          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed mb-8">
-            In the dynamic landscape of modern manufacturing, 3D printing stands as a beacon of innovation, fundamentally transforming the way we conceive, design, and produce objects. At the forefront of this revolution is InSculp 3D, where innovation is not just a goal but a guiding principle. We are at the cutting edge of 3D printing technology, leveraging the latest advancements to redefine the possibilities of additive manufacturing.
+        <FadeIn direction="left" className="space-y-6">
+          <TextReveal>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">Architectural Ceiling</h2>
+          </TextReveal>
+          <h3 className="text-xl font-josefin font-bold text-primary tracking-widest uppercase">Redefining Interior Spaces</h3>
+          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed">
+            In the dynamic landscape of modern interior architecture, large-format 3D printing stands as a beacon of innovation. We specialize in producing bespoke architectural ceiling panels and custom parametric structures that transform commercial and residential spaces across Dubai and the EMEA region.
           </p>
-          <a href="/contact-us" className="inline-block px-8 py-4 bg-primary text-primary-foreground font-heading font-bold tracking-widest rounded-full transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-lg shadow-primary/25">
-            LET INSCULP CRAFT YOUR IDEAS
-          </a>
+          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed mb-8">
+            Leveraging cutting-edge additive manufacturing, we eliminate traditional constraints, allowing architects to conceive and install breathtaking, lightweight, and acoustically optimized ceiling elements with unmatched precision.
+          </p>
         </FadeIn>
+      </section>
+
+      {/* Large Format Prototyping Feature */}
+      <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center">
+        <FadeIn direction="right" className="order-2 md:order-1 space-y-6">
+          <TextReveal>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">Large-Scale Prototyping</h2>
+          </TextReveal>
+          <h3 className="text-xl font-josefin font-bold text-primary tracking-widest uppercase">Up to 3 Meters in Height</h3>
+          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed">
+            When standard 3D printing companies hit their size limits, InSculp 3D steps in. Our advanced industrial pellet printers and state-of-the-art FDM machines are capable of executing massive, seamless prints up to 3 meters tall.
+          </p>
+          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed mb-8">
+            From highly detailed aerospace prototypes to large-scale industrial mockups and cinematic props, we provide the ultimate solution for rapid manufacturing in the UAE. Our process ensures robust structural integrity, precise dimensional accuracy, and remarkably fast turnaround times.
+          </p>
+        </FadeIn>
+        <FadeIn direction="left" className="order-1 md:order-2">
+          <VelocityScroll intensity={-1.5}>
+            <ParallaxImage 
+              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" 
+              alt="Large Format 3D Printed Industrial Prototype" 
+              className="w-full aspect-square rounded-3xl bg-border shadow-2xl" 
+              speed={1.15}
+            />
+          </VelocityScroll>
+        </FadeIn>
+      </section>
+
+      {/* Retail Display Feature */}
+      <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center">
+        <FadeIn direction="right">
+          <VelocityScroll intensity={1.5}>
+            <ParallaxImage 
+              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/679b72388458dc748e83e1bc_b2aa567d67b672de17f0dd53ae3b0416_GISOU%20NY%20SIDE.png" 
+              alt="Bespoke Retail Display 3D Printing UAE" 
+              className="w-full aspect-[4/5] rounded-3xl bg-border shadow-2xl" 
+              speed={1.2}
+            />
+          </VelocityScroll>
+        </FadeIn>
+        <FadeIn direction="left" className="space-y-6">
+          <TextReveal>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">Retail & Visual Merchandising</h2>
+          </TextReveal>
+          <h3 className="text-xl font-josefin font-bold text-primary tracking-widest uppercase">Captivate Your Audience</h3>
+          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed">
+            In the highly competitive luxury retail market of Dubai, standing out requires extraordinary visual merchandising. We craft eye-catching, custom 3D printed pop-up displays, giant window installations, and immersive brand activations.
+          </p>
+          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed mb-8">
+            Our comprehensive service includes full post-processing—sanding, smoothing, painting, and mixed-media finishing—ensuring your retail display reflects the premium quality of your brand. If you can dream it, we can print and install it.
+          </p>
+        </FadeIn>
+      </section>
+
+      {/* Materials & Tech Grid */}
+      <section className="max-w-7xl mx-auto w-full mt-32 bg-muted p-12 md:p-16 rounded-[3rem] border border-border/50">
+        <div className="text-center mb-16">
+          <TextReveal>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">Technology & Materials</h2>
+          </TextReveal>
+          <p className="text-xl text-foreground/70 font-josefin font-light max-w-2xl mx-auto">
+            We operate the most advanced digital fabrication fleet in the region, prioritizing both precision and eco-conscious sustainability.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { title: "Advanced Pellet Extrusion", desc: "Our pellet-fed 3D printers offer unmatched speed and material cost-efficiency for massive prints, enabling rapid large-scale production runs." },
+            { title: "Sustainable Plastics", desc: "We actively champion the circular economy by utilizing recyclable and biodegradable polymers, ensuring your large installations are eco-friendly." },
+            { title: "High-Precision FDM", desc: "For projects requiring microscopic detail and intricate geometries, our array of top-tier FDM printers guarantees flawless execution every time." },
+          ].map((item, i) => (
+            <FadeIn key={item.title} delay={0.1 * i} direction="up" className="bg-background p-8 rounded-3xl shadow-sm">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                <div className="w-4 h-4 bg-primary rounded-full animate-pulse" />
+              </div>
+              <h3 className="text-2xl font-heading font-bold text-foreground mb-4">{item.title}</h3>
+              <p className="text-foreground/70 font-josefin font-light leading-relaxed">{item.desc}</p>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* The InSculp Process */}
+      <section className="max-w-7xl mx-auto w-full mt-32 mb-20 text-center">
+        <TextReveal>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-16">Our Proven Workflow</h2>
+        </TextReveal>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { step: "01", title: "Consultation", desc: "We evaluate your concept, requirements, and feasibility." },
+            { step: "02", title: "3D Modeling", desc: "Our engineers prepare and optimize digital CAD designs." },
+            { step: "03", title: "Fabrication", desc: "Industrial-grade 3D printing brings the design to reality." },
+            { step: "04", title: "Finishing", desc: "Sanding, painting, and professional post-processing." },
+          ].map((item, i) => (
+            <FadeIn key={item.step} delay={0.1 * i} direction="up" className="relative">
+              <div className="text-6xl md:text-8xl font-heading font-black text-primary/10 mb-4">{item.step}</div>
+              <h3 className="text-xl font-heading font-bold text-foreground mb-2 relative z-10">{item.title}</h3>
+              <p className="text-sm md:text-base text-foreground/70 font-josefin font-light relative z-10">{item.desc}</p>
+              {i < 3 && <div className="hidden md:block absolute top-12 left-2/3 w-full h-[1px] bg-gradient-to-r from-border to-transparent -z-10" />}
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Footer */}
+      <section className="w-full max-w-7xl mx-auto mt-20 bg-primary text-primary-foreground rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6">Ready to Build the Impossible?</h2>
+          <p className="text-xl md:text-2xl font-josefin font-light mb-10 text-primary-foreground/90">
+            Whether it is a 3-meter art sculpture or a custom architectural ceiling, InSculp 3D is your premium manufacturing partner in Dubai.
+          </p>
+          <MagneticButton>
+            <a href="/contact-us#contact-form" className="inline-block px-10 py-5 bg-background text-foreground font-heading font-bold tracking-widest uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl">
+              Request a Custom Quote
+            </a>
+          </MagneticButton>
+        </div>
       </section>
     </div>
   );

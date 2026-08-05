@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-heading" });
 const josefin = Josefin_Sans({ subsets: ["latin"], variable: "--font-josefin" });
@@ -51,6 +52,8 @@ export const metadata: Metadata = {
   },
 };
 
+import LayoutWrapper from "@/components/LayoutWrapper";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,13 +62,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${josefin.variable}`} suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col bg-background text-foreground" suppressHydrationWarning>
-        <Navbar />
-        <PageTransition>
-          <main className="flex-1">
-            {children}
-          </main>
-        </PageTransition>
-        <Footer />
+        <LayoutWrapper>
+          {children}
+        </LayoutWrapper>
       </body>
     </html>
   );

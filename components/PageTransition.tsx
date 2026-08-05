@@ -10,10 +10,16 @@ export default function PageTransition({ children }: { children: React.ReactNode
     <AnimatePresence mode="wait">
       <motion.div
         key={pathname}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
+        onAnimationComplete={() => {
+          // Force a ScrollTrigger refresh after the page is fully mounted and visible
+          setTimeout(() => {
+            window.dispatchEvent(new Event("resize"));
+          }, 100);
+        }}
         className="flex flex-col min-h-screen"
       >
         {children}

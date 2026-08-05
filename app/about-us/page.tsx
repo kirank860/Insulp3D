@@ -2,6 +2,9 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import { WireframeSphere } from "@/components/ui/wireframe-sphere";
+import { ParallaxImage } from "@/components/gsap/ParallaxImage";
+import { TextReveal } from "@/components/gsap/TextReveal";
 import Image from "next/image";
 import { Metadata } from "next";
 
@@ -16,10 +19,15 @@ export default function AboutUs() {
     <div className="flex flex-col min-h-screen pt-32 pb-24 overflow-hidden">
       
       {/* Hero Section */}
-      <section className="px-6 lg:px-8 mb-32 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        <FadeIn direction="right">
-          <div className="space-y-8">
-            <WordPullUp words="Our Story" className="text-left text-5xl md:text-7xl font-heading text-foreground mb-4" />
+      <section className="px-6 lg:px-8 mb-32 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative">
+        <FadeIn direction="right" className="relative">
+          {/* Animated Wireframe Background */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] max-w-[900px] aspect-square -z-10 opacity-[0.25] pointer-events-none">
+            <WireframeSphere className="w-full h-full" />
+          </div>
+
+          <div className="space-y-8 relative z-10">
+            <WordPullUp words="Our Story" className="text-left text-5xl md:text-7xl font-heading text-foreground mb-4 uppercase" />
             <h2 className="text-3xl font-heading font-bold text-primary">Crafting the Future with 3D Printing</h2>
             <p className="text-lg text-foreground/80 font-josefin font-light leading-relaxed">
               We are artists, creators, and innovators, and we understand the power of creativity. With over two decades of experience, we have mastered sculpting innovation and pushed the limits of large-format 3D printing while incorporating artistic finesse into our work. <br/><br/>
@@ -28,24 +36,23 @@ export default function AboutUs() {
             </p>
           </div>
         </FadeIn>
-        <FadeIn direction="left" delay={0.2}>
-          <div className="aspect-[4/5] bg-border rounded-3xl relative overflow-hidden shadow-2xl">
-            <Image 
-              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b6_fb7ba5ab760b3084f89e4cfc22c7f70c_web%20render_edited-min.png" 
-              alt="top 3D printed chair by INSCULP3D at Dubai" 
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover" 
-            />
-          </div>
+        <FadeIn direction="left" delay={0.2} className="w-full">
+          <ParallaxImage 
+            src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b6_fb7ba5ab760b3084f89e4cfc22c7f70c_web%20render_edited-min.png" 
+            alt="top 3D printed chair by INSCULP3D at Dubai"
+            className="aspect-[4/5] bg-border rounded-3xl shadow-2xl w-full"
+            speed={1.2}
+          />
         </FadeIn>
       </section>
 
       {/* Our Vision */}
       <section className="w-full bg-primary text-primary-foreground py-24 px-6 lg:px-8 mb-32 relative">
         <div className="max-w-7xl mx-auto">
-          <FadeIn direction="up">
+          <TextReveal>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-6">OUR VISION</h2>
+          </TextReveal>
+          <FadeIn direction="up">
             <p className="text-xl font-josefin font-light text-center max-w-3xl mx-auto mb-16 text-primary-foreground/90">
               Setting global standards in digital fabrication, we transform spaces with pioneering 3D printing technologies.
             </p>
@@ -69,8 +76,10 @@ export default function AboutUs() {
 
       {/* Our Mission */}
       <section className="px-6 lg:px-8 mb-32 max-w-4xl mx-auto text-center">
-        <FadeIn direction="up">
+        <TextReveal>
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-8">OUR MISSION</h2>
+        </TextReveal>
+        <FadeIn direction="up">
           <p className="text-lg font-josefin font-light text-foreground/80 leading-relaxed">
             Our mission is to unleash the full potential of creativity and bring it to life in breathtaking ways. Through cutting-edge technology and skilled artisans, we are committed to excellence, creating awe-inspiring works of art that transform perceptions. <br/><br/>
             We aim to inspire others to embrace their creativity and strive for greatness, making the world a more beautiful and uplifting place for all. To be the pioneers of creativity and innovation in art and design, challenging the boundaries of possibility and igniting the imagination to create a brighter future for everyone.
@@ -110,7 +119,9 @@ export default function AboutUs() {
       {/* Our Core Values */}
       <section className="px-6 lg:px-8 mb-32 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <FadeIn direction="right" className="space-y-8">
-          <h2 className="text-4xl font-heading font-bold text-foreground mb-8">Our Core Values</h2>
+          <TextReveal>
+            <h2 className="text-4xl font-heading font-bold text-foreground mb-8">Our Core Values</h2>
+          </TextReveal>
           <div className="space-y-6">
             {[
               { title: "Innovation", desc: "Pushing boundaries with every project." },
@@ -130,39 +141,54 @@ export default function AboutUs() {
             ))}
           </div>
         </FadeIn>
-        <FadeIn direction="left" delay={0.2}>
-          <div className="aspect-[3/4] bg-border rounded-3xl relative overflow-hidden shadow-2xl">
-            <Image 
-              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbc1818843b7e0a75d6c_820f1eac47e65ca457ad567c07691576_IMG-20241105-WA0039.avif" 
-              alt="Pellets" 
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover" 
-            />
-          </div>
+        <FadeIn direction="left" delay={0.2} className="w-full">
+          <ParallaxImage 
+            src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbc1818843b7e0a75d6c_820f1eac47e65ca457ad567c07691576_IMG-20241105-WA0039.avif" 
+            alt="Pellets" 
+            className="aspect-[3/4] bg-border rounded-3xl shadow-2xl w-full"
+            speed={1.2}
+          />
         </FadeIn>
       </section>
 
       {/* Our Visionaries */}
-      <section className="w-full bg-muted py-24 px-6 lg:px-8 mb-32">
+      <section className="w-full bg-background py-24 px-6 lg:px-8 mb-32">
         <div className="max-w-7xl mx-auto">
           <FadeIn direction="up">
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 text-foreground">OUR VISIONARIES</h2>
           </FadeIn>
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-start">
             {[
               { name: "Subramani Balakrishnan", role: "Founder", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468be_cc52d902f75f1f0fa9221180513fa632_IMG_8766.png", quote: "The visionary mindset transforms the realm of 3D printing, inspiring us to redefine possibilities and break through barriers to what we can achieve." },
-              { name: "Devna Subramani", role: "Co-Founder", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bd_c44840c6c9ac3242f750f9f9f781655d_IMG_8824-min.png", quote: "3D printing has promoted significant growth in manufacturing by emphasising sustainable practices and innovative solutions that benefit both people and the environment." },
+              { name: "Devna Subramani", role: "Co-Founder", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bd_c44840c6c9ac3242f750f9f9f781655d_IMG_8824-min.png", quote: "3D printing has promoted significant growth in manufacturing by emphasising sustainable practices and innovative solutions that benefit both people and the environment.", stagger: true },
               { name: "Bindu Subramani", role: "Managing Director", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468c2_f4ef3785a4956a9ce3de7cff1e6bcd94_20240529_115643-min.png", quote: "3D printing represents a significant advancement at the intersection of technology and design, fostering new opportunities for innovation." },
             ].map((person, i) => (
-              <FadeIn key={person.name} delay={0.1 * i} direction="up" className="flex flex-col items-center text-center space-y-6">
-                <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary shadow-xl">
-                  <Image src={person.img} alt={person.name} fill sizes="256px" className="object-cover" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-heading font-bold text-foreground">{person.name}</h3>
-                  <p className="font-josefin font-bold text-primary tracking-widest uppercase text-sm mt-1 mb-4">{person.role}</p>
-                  <p className="font-josefin font-light text-foreground/80 italic">&quot;{person.quote}&quot;</p>
+              <FadeIn key={person.name} delay={0.1 * i} direction="up" className={`w-full ${person.stagger ? 'md:mt-16' : ''}`}>
+                <div className="group relative w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-muted border border-border/50">
+                  <Image 
+                    src={person.img} 
+                    alt={person.name} 
+                    fill 
+                    sizes="(max-width: 768px) 100vw, 33vw" 
+                    className="object-cover transition-all duration-700 ease-in-out scale-100 group-hover:scale-105" 
+                  />
+                  {/* Subtle persistent bottom gradient */}
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 transition-opacity duration-500 group-hover:opacity-100" />
+                  
+                  {/* Persistent Title */}
+                  <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20 w-full transition-all duration-500 transform group-hover:translate-y-[-20px] group-hover:opacity-0">
+                    <h3 className="text-2xl font-heading font-bold text-white mb-2">{person.name}</h3>
+                    <p className="font-josefin font-bold text-white/80 tracking-widest uppercase text-xs">{person.role}</p>
+                  </div>
+
+                  {/* Frosted Glass Quote Overlay */}
+                  <div className="absolute inset-0 bg-black/60 backdrop-blur-md z-30 flex flex-col items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 className="text-2xl font-heading font-bold text-white mb-1 transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">{person.name}</h3>
+                    <p className="font-josefin font-bold text-white/80 tracking-widest uppercase text-xs mb-8 transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">{person.role}</p>
+                    <p className="text-white text-center font-josefin font-light text-lg md:text-xl leading-relaxed italic transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                      &quot;{person.quote}&quot;
+                    </p>
+                  </div>
                 </div>
               </FadeIn>
             ))}

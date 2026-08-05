@@ -42,7 +42,7 @@ export function WordPullUp({
         <motion.span
           key={i}
           variants={framerProps}
-          style={{ display: "inline-block", paddingRight: "8px" }}
+          style={{ display: "inline-block", paddingRight: "0.3em" }}
         >
           {word === "" ? <span>&nbsp;</span> : word}
         </motion.span>

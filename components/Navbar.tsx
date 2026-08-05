@@ -41,15 +41,28 @@ export default function Navbar() {
     }
   }, [isMobileMenuOpen]);
 
+  // Force a solid background on dynamic project/publication pages because the hero image is completely dark
+  const isDarkHeroPage = pathname.startsWith('/projects/') || pathname.startsWith('/publications/');
+  const forceSolid = scrolled || isDarkHeroPage;
+
   return (
     <>
       <nav className={cn(
         "fixed top-0 inset-x-0 z-50 w-full transition-all duration-300",
-        scrolled ? "bg-background/90 backdrop-blur-md border-b border-border shadow-sm py-4" : "bg-transparent py-6"
+        forceSolid ? "bg-background/90 backdrop-blur-md border-b border-border shadow-sm py-4" : "bg-transparent py-6"
       )}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 z-50 relative">
+          <Link 
+            href="/" 
+            className="flex items-center gap-2 z-50 relative"
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
             <Image 
               src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344683c_Group.svg" 
               alt="InSculp 3D Logo" 
@@ -84,7 +97,7 @@ export default function Navbar() {
               ))}
             </ul>
             <Link
-              href="/contact-us"
+              href="/contact-us#contact-form"
               className="px-8 py-3 bg-primary text-primary-foreground font-josefin font-bold text-xs tracking-[0.2em] uppercase rounded-full transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 active:translate-y-0"
             >
               CONTACT US
@@ -149,7 +162,7 @@ export default function Navbar() {
                 className="pt-8"
               >
                 <Link
-                  href="/contact-us"
+                  href="/contact-us#contact-form"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="inline-block px-10 py-4 bg-primary text-primary-foreground font-josefin font-bold tracking-[0.2em] rounded-full transition-all"
                 >

@@ -2,7 +2,10 @@
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
 import { FadeIn } from "@/components/ui/fade-in";
+import { TextReveal } from "@/components/gsap/TextReveal";
 import ContactForm from "@/components/ContactForm";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { ClientHashScroll } from "@/components/ClientHashScroll";
 import Image from "next/image";
 import { Metadata } from "next";
 
@@ -15,8 +18,9 @@ export const metadata: Metadata = {
 export default function ContactUs() {
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8">
+      <ClientHashScroll />
       <div className="max-w-4xl mx-auto text-center mb-24">
-        <WordPullUp words="Share your vision, and let us craft it for you" className="text-5xl md:text-6xl font-heading text-foreground mb-8" />
+        <WordPullUp words="Share your vision, and let us craft it for you" className="text-5xl md:text-6xl font-heading text-foreground mb-8 uppercase" />
         <FadeIn delay={0.4}>
           <div className="flex flex-col items-center gap-8">
             <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" alt="Custom 3D Printing" width={800} height={800} className="w-64 h-auto rounded-3xl shadow-xl" />
@@ -27,9 +31,11 @@ export default function ContactUs() {
         </FadeIn>
       </div>
       
-      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16">
+      <div id="contact-form" className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16 scroll-mt-32">
         <FadeIn delay={0.4} direction="right" className="space-y-8">
-          <h2 className="text-4xl font-heading font-bold text-foreground">Contact us</h2>
+          <TextReveal>
+            <h2 className="text-4xl font-heading font-bold text-foreground">Contact us</h2>
+          </TextReveal>
           <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed">
             We thrive on creation, innovation and collaboration. Do you have a detailed design, or simply a vision? Let our team handle it for you. Get in touch with us today or visit us to craft your form.
           </p>
@@ -58,6 +64,7 @@ export default function ContactUs() {
           <ContactForm />
         </FadeIn>
       </div>
+      <WhatsAppButton />
     </div>
   );
 }
