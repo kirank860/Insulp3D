@@ -45,8 +45,8 @@ export function ProjectGallery({ projects }: { projects: any[] }) {
         
         {/* Left Sticky Navigation */}
         <div className="hidden md:block relative">
-          <div className="sticky top-40 flex flex-col max-h-[500px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-primary/20 hover:scrollbar-thumb-primary/50 scrollbar-track-transparent">
-            <div className="space-y-6 flex flex-col">
+          <div className="sticky top-40 flex flex-col max-h-[500px] overflow-y-auto overflow-x-hidden pr-4 scrollbar-thin scrollbar-thumb-primary/20 hover:scrollbar-thumb-primary/50 scrollbar-track-transparent">
+            <div className="space-y-6 flex flex-col w-full">
               {projects.map((project, i) => {
                 const href = project.slug?.current ? `/projects/${project.slug.current}` : `#project-${i}`;
                 const isHash = href.startsWith('#');
@@ -54,8 +54,8 @@ export function ProjectGallery({ projects }: { projects: any[] }) {
                   <a 
                     href={href} 
                     key={i} 
-                    className={`text-xl md:text-2xl font-heading font-bold uppercase transition-all duration-500 cursor-pointer shrink-0 ${
-                      activeId === i ? 'text-primary scale-105 origin-left' : 'text-foreground/30 hover:text-foreground/70'
+                    className={`text-xl md:text-2xl font-heading font-bold uppercase transition-all duration-500 cursor-pointer shrink-0 break-words whitespace-normal ${
+                      activeId === i ? 'text-primary scale-[1.02] origin-left' : 'text-foreground/30 hover:text-foreground/70'
                     }`}
                     onClick={(e) => {
                       if (!isHash) {

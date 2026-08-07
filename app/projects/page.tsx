@@ -2,12 +2,12 @@
 
 import { FadeIn } from "@/components/ui/fade-in";
 import { MagneticButton } from "@/components/gsap/MagneticButton";
-import { PelletPrinter3D } from "@/components/gsap/PelletPrinter3D";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import Link from "next/link";
 import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { getPageQuery } from "@/sanity/lib/queries";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Projects | InSculp 3D",
@@ -32,12 +32,13 @@ export default async function Projects() {
   const displayProjects = projects.length > 0 ? projects : fallbackProjects;
   
   return (
-    <div className="flex flex-col min-h-screen pt-24 pb-24 px-6 lg:px-8 bg-background">
+    <div className="flex flex-col min-h-screen pt-24 pb-24 px-6 lg:px-8 bg-background overflow-x-hidden">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center py-16 min-h-[70vh]">
-        <FadeIn direction="right" className="space-y-6 relative z-10">
-          <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground leading-tight uppercase">
-            {title}
+        <FadeIn direction="right" className="space-y-6">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground leading-tight uppercase flex flex-col md:block">
+            <span className="whitespace-nowrap">{title.split(' ').slice(0, 2).join(' ')}</span>{' '}
+            <span>{title.split(' ').slice(2).join(' ')}</span>
           </h1>
           <p className="text-xl text-foreground/80 font-josefin font-light max-w-lg leading-relaxed whitespace-pre-line">
             {description}
@@ -51,9 +52,16 @@ export default async function Projects() {
             </Link>
           </MagneticButton>
         </FadeIn>
+        
         <FadeIn direction="left" className="h-full w-full min-h-[400px] md:min-h-[500px] flex items-center justify-center">
-          <div className="w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden relative shadow-2xl bg-transparent">
-            <PelletPrinter3D />
+          <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative bg-border">
+            <Image 
+              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bf_edb60f66c7e9b3abcc5e426969c4c1e0_lounge%20chair%20TWO%20TONE.jpg" 
+              alt="Lounge Chair TWO TONE" 
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover" 
+            />
           </div>
         </FadeIn>
       </section>
