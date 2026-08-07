@@ -9,13 +9,20 @@ import { ClientHashScroll } from "@/components/ClientHashScroll";
 import Image from "next/image";
 import { Metadata } from "next";
 
+import { client } from "@/sanity/lib/client";
+import { getPageQuery } from "@/sanity/lib/queries";
+
 export const metadata: Metadata = {
   title: "Contact Us | InSculp 3D",
   description: "Get in touch with InSculp 3D in Dubai. Transform your visions into remarkable 3D printed realities with our expert team.",
   alternates: { canonical: '/contact-us' }
 };
 
-export default function ContactUs() {
+export default async function ContactUs() {
+  const pageContent = await client.fetch(getPageQuery, { slug: '/contact-us' });
+  const title = pageContent?.heroTitle || "Share your vision, and let us craft it for you";
+  const description = pageContent?.heroDescription || "A passion for creation, innovation, and collaboration fuels us. Whether you have a bold design or just the seeds of an idea, we specialise in transforming visions into remarkable realities. Don't let your creativity sit on the sidelines—join us in crafting something exceptional! Contact us today to start a journey to elevate your ideas beyond your wildest expectations. Let's create something extraordinary together!";
+
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8">
       <ClientHashScroll />
@@ -54,12 +61,12 @@ export default function ContactUs() {
       </div>
 
       <div className="max-w-4xl mx-auto text-center mt-32">
-        <WordPullUp words="Share your vision, and let us craft it for you" className="text-5xl md:text-6xl font-heading text-foreground mb-8 uppercase" />
+        <WordPullUp words={title} className="text-5xl md:text-6xl font-heading text-foreground mb-8 uppercase" />
         <FadeIn delay={0.4}>
           <div className="flex flex-col items-center gap-8">
             <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" alt="Custom 3D Printing" width={800} height={800} className="w-64 h-auto rounded-3xl shadow-xl" />
-            <p className="text-xl text-foreground/80 font-josefin font-light max-w-3xl mx-auto leading-relaxed">
-              A passion for creation, innovation, and collaboration fuels us. Whether you have a bold design or just the seeds of an idea, we specialise in transforming visions into remarkable realities. Don&apos;t let your creativity sit on the sidelines—join us in crafting something exceptional! Contact us today to start a journey to elevate your ideas beyond your wildest expectations. Let&apos;s create something extraordinary together!
+            <p className="text-xl text-foreground/80 font-josefin font-light leading-relaxed whitespace-pre-line">
+              {description}
             </p>
           </div>
         </FadeIn>

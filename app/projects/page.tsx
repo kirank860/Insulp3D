@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
+import { getPageQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Projects | InSculp 3D",
@@ -17,6 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Projects() {
+  const pageContent = await client.fetch(getPageQuery, { slug: '/projects' });
+  const title = pageContent?.heroTitle || "Our Selective Projects";
+  const description = pageContent?.heroDescription || "Our flagship projects reflect our team's passion, love, and dedication towards printing, design, and innovation in crafting each piece.";
+
   const projects = await client.fetch(`*[_type == "project"] | order(_createdAt desc)`);
   
   const fallbackProjects = [
@@ -34,10 +39,10 @@ export default async function Projects() {
       <section className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center py-16 min-h-[70vh]">
         <FadeIn direction="right" className="space-y-6 relative z-10">
           <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground leading-tight uppercase">
-            Our Selective Projects
+            {title}
           </h1>
-          <p className="text-xl text-foreground/80 font-josefin font-light max-w-lg leading-relaxed">
-            Our flagship projects reflect our team&apos;s passion, love, and dedication towards printing, design, and innovation in crafting each piece.
+          <p className="text-xl text-foreground/80 font-josefin font-light max-w-lg leading-relaxed whitespace-pre-line">
+            {description}
           </p>
           <MagneticButton>
             <Link 

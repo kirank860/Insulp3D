@@ -17,7 +17,14 @@ export const metadata: Metadata = {
   }
 };
 
-export default function Home() {
+import { client } from "@/sanity/lib/client";
+import { getPageQuery } from "@/sanity/lib/queries";
+
+export default async function Home() {
+  const pageContent = await client.fetch(getPageQuery, { slug: '/' });
+  const title = pageContent?.heroTitle || "Leading 3D Printing in the EMEA Region";
+  const description = pageContent?.heroDescription || "As the first dedicated large format 3D Printing facility in the EMEA region, InSculp is equipped to handle small to large 3D printing jobs. Crafting forms with unmatched precision and innovation.";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -60,12 +67,12 @@ export default function Home() {
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center space-y-6 md:space-y-8">
           <WordPullUp
-            words="Leading 3D Printing in the EMEA Region"
+            words={title}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-foreground font-heading leading-tight md:leading-[1.1] uppercase"
           />
           <FadeIn delay={0.6}>
             <p className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-2xl font-josefin font-light leading-relaxed">
-              As the first dedicated large format 3D Printing facility in the EMEA region, InSculp is equipped to handle small to large 3D printing jobs. Crafting forms with unmatched precision and innovation.
+              {description}
             </p>
           </FadeIn>
 

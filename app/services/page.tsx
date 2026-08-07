@@ -18,15 +18,22 @@ export const metadata: Metadata = {
   alternates: { canonical: '/services' }
 };
 
-export default function Services() {
+import { client } from "@/sanity/lib/client";
+import { getPageQuery } from "@/sanity/lib/queries";
+
+export default async function Services() {
+  const pageContent = await client.fetch(getPageQuery, { slug: '/services' });
+  const title = pageContent?.heroTitle || "Our Services & Industries";
+  const description = pageContent?.heroDescription || "We provide a wide array of services to meet your needs, all conveniently available under one roof. With our in-house capabilities, we can accommodate various aesthetic preferences, whether you're seeking a raw finish or something more specialized, such as painting and mixed media production.";
+
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8 relative overflow-hidden">
       <Scene />
       <div className="max-w-4xl mx-auto text-center mb-24 relative z-10">
-        <WordPullUp words="Our Services & Industries" className="text-5xl md:text-7xl font-heading text-foreground mb-8 uppercase" />
+        <WordPullUp words={title} className="text-5xl md:text-7xl font-heading text-foreground mb-8 uppercase" />
         <FadeIn delay={0.4}>
-          <p className="text-xl text-foreground/80 font-josefin font-light max-w-2xl mx-auto">
-            We provide a wide array of services to meet your needs, all conveniently available under one roof. With our in-house capabilities, we can accommodate various aesthetic preferences, whether you&apos;re seeking a raw finish or something more specialized, such as painting and mixed media production.
+          <p className="text-xl text-foreground/80 font-josefin font-light max-w-2xl mx-auto whitespace-pre-line">
+            {description}
           </p>
         </FadeIn>
       </div>

@@ -14,7 +14,14 @@ export const metadata: Metadata = {
   alternates: { canonical: '/about-us' }
 };
 
-export default function AboutUs() {
+import { client } from "@/sanity/lib/client";
+import { getPageQuery } from "@/sanity/lib/queries";
+
+export default async function AboutUs() {
+  const pageContent = await client.fetch(getPageQuery, { slug: '/about-us' });
+  const title = pageContent?.heroTitle || "Our Story";
+  const description = pageContent?.heroDescription || "We are artists, creators, and innovators, and we understand the power of creativity. With over two decades of experience, we have mastered sculpting innovation and pushed the limits of large-format 3D printing while incorporating artistic finesse into our work.\n\nOur expertise spans a diverse range of materials, manufacturing techniques, and methods, aided by technology and skilled artisans who work tirelessly to bring our clients' visions to life. Our commitment to unlocking our clients' creative vision and transforming it into a tangible, awe-inspiring reality is unwavering.\n\nFrom groundbreaking art sculptures to stunning architectural pieces and visionary art installations, we strive to redefine the limitless potential of art.";
+
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 overflow-hidden">
       
@@ -27,12 +34,10 @@ export default function AboutUs() {
           </div>
 
           <div className="space-y-8 relative z-10">
-            <WordPullUp words="Our Story" className="text-left text-5xl md:text-7xl font-heading text-foreground mb-4 uppercase" />
+            <WordPullUp words={title} className="text-left text-5xl md:text-7xl font-heading text-foreground mb-4 uppercase" />
             <h2 className="text-3xl font-heading font-bold text-primary">Crafting the Future with 3D Printing</h2>
-            <p className="text-lg text-foreground/80 font-josefin font-light leading-relaxed">
-              We are artists, creators, and innovators, and we understand the power of creativity. With over two decades of experience, we have mastered sculpting innovation and pushed the limits of large-format 3D printing while incorporating artistic finesse into our work. <br/><br/>
-              Our expertise spans a diverse range of materials, manufacturing techniques, and methods, aided by technology and skilled artisans who work tirelessly to bring our clients&apos; visions to life. Our commitment to unlocking our clients&apos; creative vision and transforming it into a tangible, awe-inspiring reality is unwavering. <br/><br/>
-              From groundbreaking art sculptures to stunning architectural pieces and visionary art installations, we strive to redefine the limitless potential of art.
+            <p className="text-lg text-foreground/80 font-josefin font-light leading-relaxed whitespace-pre-line">
+              {description}
             </p>
           </div>
         </FadeIn>

@@ -7,6 +7,8 @@ import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
+import { getPageQuery } from "@/sanity/lib/queries";
+
 export const metadata: Metadata = {
   title: "Publications | InSculp 3D",
   description: "Read our latest publications, news, and insights into the world of large-format 3D printing and manufacturing innovations.",
@@ -16,6 +18,10 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function Publications() {
+  const pageContent = await client.fetch(getPageQuery, { slug: '/publications' });
+  const title = pageContent?.heroTitle || "Editorial";
+  const description = pageContent?.heroDescription || "Insights on 3D printing technology, sustainability, and manufacturing innovation.";
+
   const publications = await client.fetch(`*[_type == "publication"] | order(date desc)`);
   
   const fallbackPublications = [
@@ -38,10 +44,10 @@ export default async function Publications() {
     <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8 bg-background">
       {/* Header */}
       <div className="max-w-7xl mx-auto w-full text-center mb-16">
-        <WordPullUp words="Editorial" className="text-5xl md:text-8xl font-heading font-black text-foreground mb-6 uppercase tracking-wider" />
+        <WordPullUp words={title} className="text-5xl md:text-8xl font-heading font-black text-foreground mb-6 uppercase tracking-wider" />
         <FadeIn delay={0.4}>
-          <p className="text-lg md:text-2xl text-foreground/70 font-josefin font-light max-w-3xl mx-auto uppercase tracking-widest">
-            Insights on 3D printing technology, sustainability, and manufacturing innovation.
+          <p className="text-lg md:text-2xl text-foreground/70 font-josefin font-light max-w-3xl mx-auto uppercase tracking-widest whitespace-pre-line">
+            {description}
           </p>
         </FadeIn>
       </div>
