@@ -53,7 +53,7 @@ export default async function Services() {
         ]).map((service: any, i: number) => (
           <FadeIn key={service.title} delay={0.1 * i} direction="up" className="h-full">
             <Link href={`/services/${service.slug}`} className="bg-muted p-10 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors group text-center flex flex-col items-center h-full justify-center">
-              <Image src={service.iconUrl || service.icon} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
+              <Image src={service.iconUrl || service.icon || "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg"} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
             </Link>
           </FadeIn>

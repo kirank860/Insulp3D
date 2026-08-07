@@ -6,9 +6,30 @@ import { TextReveal } from "@/components/gsap/TextReveal";
 import Link from "next/link";
 import { Metadata } from "next";
 
+import { client } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+
+// Groq query to fetch a single service by slug
+const getServiceBySlugQuery = groq`
+  *[_type == "service" && slug.current == $slug][0] {
+    title,
+    "slug": slug.current,
+    description,
+    "iconUrl": icon.asset->url,
+    "mainImageUrl": mainImage.asset->url,
+    details
+  }
+`;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const service = servicesData.find((s) => s.slug === slug);
+  
+  // Try to fetch from Sanity
+  const sanityService = await client.fetch(getServiceBySlugQuery, { slug });
+  
+  // Fallback to hardcoded data if Sanity is empty
+  const service = sanityService || servicesData.find((s) => s.slug === slug);
+  
   if (!service) return { title: 'Service Not Found' };
   
   return {
@@ -19,11 +40,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const service = servicesData.find((s) => s.slug === slug);
+  
+  // Fetch from Sanity
+  const sanityService = await client.fetch(getServiceBySlugQuery, { slug });
+  
+  // Use Sanity data or fallback to hardcoded
+  const service = sanityService || servicesData.find((s) => s.slug === slug);
 
   if (!service) {
     notFound();
   }
+
+  // Handle differences in data structure between Sanity and hardcoded
+  const imageUrl = service.mainImageUrl || service.image || "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png";
+  const detailsList = service.details || [
+    "Expert Consultation",
+    "Precision 3D Modeling",
+    "High-Quality Fabrication",
+    "Professional Post-Processing"
+  ];
 
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 overflow-hidden">
@@ -39,14 +74,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               {service.title}
             </h1>
           </TextReveal>
-          <p className="text-lg md:text-xl text-foreground/80 font-josefin font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-foreground/80 font-josefin font-light leading-relaxed whitespace-pre-line">
             {service.description}
           </p>
         </FadeIn>
         
         <FadeIn direction="left" delay={0.2} className="w-full">
-          <div className="w-full aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden relative shadow-2xl border border-border/50">
-             <Image src={service.image} alt={service.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+          <div className="w-full aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden relative shadow-2xl border border-border/50 bg-border">
+             <Image src={imageUrl} alt={service.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
           </div>
         </FadeIn>
       </section>
@@ -58,7 +93,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-foreground">WHAT WE OFFER</h2>
           </TextReveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {service.details.map((detail, index) => (
+            {detailsList.map((detail: string, index: number) => (
               <FadeIn key={index} delay={0.1 * index} direction="up" className="bg-background p-8 rounded-3xl border border-border/50 shadow-sm hover:border-primary/50 transition-colors">
                 <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6 font-bold font-josefin text-lg">
                   {index + 1}
