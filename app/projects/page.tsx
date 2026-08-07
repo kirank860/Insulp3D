@@ -1,12 +1,10 @@
 
 
 import { FadeIn } from "@/components/ui/fade-in";
-import { ParallaxImage } from "@/components/gsap/ParallaxImage";
-import { VelocityScroll } from "@/components/gsap/VelocityScroll";
 import { MagneticButton } from "@/components/gsap/MagneticButton";
+import { PelletPrinter3D } from "@/components/gsap/PelletPrinter3D";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import Link from "next/link";
-import Image from "next/image";
 import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { getPageQuery } from "@/sanity/lib/queries";
@@ -54,14 +52,8 @@ export default async function Projects() {
           </MagneticButton>
         </FadeIn>
         <FadeIn direction="left" className="h-full w-full min-h-[400px] md:min-h-[500px] flex items-center justify-center">
-          <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative bg-border">
-            <Image 
-              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bf_edb60f66c7e9b3abcc5e426969c4c1e0_lounge%20chair%20TWO%20TONE.jpg" 
-              alt="Lounge Chair TWO TONE" 
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover" 
-            />
+          <div className="w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden relative shadow-2xl bg-transparent">
+            <PelletPrinter3D />
           </div>
         </FadeIn>
       </section>
