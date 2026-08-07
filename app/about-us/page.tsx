@@ -15,10 +15,11 @@ export const metadata: Metadata = {
 };
 
 import { client } from "@/sanity/lib/client";
-import { getPageQuery } from "@/sanity/lib/queries";
+import { getPageQuery, getAboutPageQuery } from "@/sanity/lib/queries";
 
 export default async function AboutUs() {
   const pageContent = await client.fetch(getPageQuery, { slug: '/about-us' });
+  const aboutPageData = await client.fetch(getAboutPageQuery);
   const title = pageContent?.heroTitle || "Our Story";
   const description = pageContent?.heroDescription || "We are artists, creators, and innovators, and we understand the power of creativity. With over two decades of experience, we have mastered sculpting innovation and pushed the limits of large-format 3D printing while incorporating artistic finesse into our work.\n\nOur expertise spans a diverse range of materials, manufacturing techniques, and methods, aided by technology and skilled artisans who work tirelessly to bring our clients' visions to life. Our commitment to unlocking our clients' creative vision and transforming it into a tangible, awe-inspiring reality is unwavering.\n\nFrom groundbreaking art sculptures to stunning architectural pieces and visionary art installations, we strive to redefine the limitless potential of art.";
 
@@ -64,11 +65,11 @@ export default async function AboutUs() {
           </FadeIn>
           
           <div className="grid md:grid-cols-3 gap-12">
-            {[
+            {(aboutPageData?.visionCards || [
               { title: "Architecture", desc: "Transforming spaces through the creation of practical and innovative architectural elements, like wall and ceiling panels, using the power of large-format digital fabrication." },
               { title: "Art", desc: "Creating one-of-a-kind 3D printed art sculptures, installation signages, furniture, lighting, decor elements, and captivating retail displays that transform artistic visions into reality." },
               { title: "Innovation", desc: "Developing custom bespoke pieces using advanced 3D printing techniques to showcase new possibilities." },
-            ].map((v, i) => (
+            ]).map((v: any, i: number) => (
               <FadeIn key={v.title} delay={0.1 * i} direction="up" className="bg-background/10 p-8 rounded-3xl backdrop-blur-sm border border-primary-foreground/20">
                 <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg" alt="icon" width={48} height={48} className="mb-6 opacity-80" style={{ filter: 'brightness(0) invert(1)' }} />
                 <h3 className="text-2xl font-heading font-bold mb-4">{v.title}</h3>
@@ -85,9 +86,8 @@ export default async function AboutUs() {
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-8">OUR MISSION</h2>
         </TextReveal>
         <FadeIn direction="up">
-          <p className="text-lg font-josefin font-light text-foreground/80 leading-relaxed">
-            Our mission is to unleash the full potential of creativity and bring it to life in breathtaking ways. Through cutting-edge technology and skilled artisans, we are committed to excellence, creating awe-inspiring works of art that transform perceptions. <br/><br/>
-            We aim to inspire others to embrace their creativity and strive for greatness, making the world a more beautiful and uplifting place for all. To be the pioneers of creativity and innovation in art and design, challenging the boundaries of possibility and igniting the imagination to create a brighter future for everyone.
+          <p className="text-lg font-josefin font-light text-foreground/80 leading-relaxed whitespace-pre-line">
+            {aboutPageData?.missionDescription || `Our mission is to unleash the full potential of creativity and bring it to life in breathtaking ways. Through cutting-edge technology and skilled artisans, we are committed to excellence, creating awe-inspiring works of art that transform perceptions. \n\nWe aim to inspire others to embrace their creativity and strive for greatness, making the world a more beautiful and uplifting place for all. To be the pioneers of creativity and innovation in art and design, challenging the boundaries of possibility and igniting the imagination to create a brighter future for everyone.`}
           </p>
         </FadeIn>
       </section>
@@ -102,12 +102,12 @@ export default async function AboutUs() {
         </FadeIn>
         
         <div className="space-y-6">
-          {[
+          {(aboutPageData?.valuesList || [
             { title: "Visionary Thinking", desc: "We commit to challenging the boundaries of what is perceived as possible, fostering a culture of bold ideas and adventurous experimentation." },
             { title: "Inspiration", desc: "We aspire to challenge the boundaries of what is perceived as possible and inspire and encourage others to embrace their creativity through our work." },
             { title: "Collaboration", desc: "We believe in the power of cooperation, recognising that diverse perspectives fuel our creativity and lead to innovative solutions." },
             { title: "Integrity", desc: "We uphold a standard of integrity in our practices, ensuring that our creativity is groundbreaking and respectful of others and their values." },
-          ].map((v, i) => (
+          ]).map((v: any, i: number) => (
             <FadeIn key={v.title} delay={0.1 * i} direction="left" className="flex flex-col md:flex-row gap-4 md:gap-12 p-8 bg-muted rounded-2xl border border-border/50 hover:border-primary/50 transition-colors items-center md:items-start">
               <h3 className="w-full md:w-1/3 text-2xl font-heading font-bold text-primary whitespace-nowrap">{v.title}</h3>
               <p className="w-full md:w-2/3 font-josefin font-light text-foreground/80">{v.desc}</p>
@@ -128,7 +128,7 @@ export default async function AboutUs() {
             <h2 className="text-4xl font-heading font-bold text-foreground mb-8">Our Core Values</h2>
           </TextReveal>
           <div className="space-y-6">
-            {[
+            {(aboutPageData?.coreValuesList || [
               { title: "Innovation", desc: "Pushing boundaries with every project." },
               { title: "Trustworthiness", desc: "From consultation to delivery, our clients rely on the integrity, quality, and reliability that Insculp represents." },
               { title: "Versatility", desc: "Adapting to each project’s unique needs, we serve a wide range of industries, demonstrating our ability to handle any challenge." },
@@ -136,7 +136,7 @@ export default async function AboutUs() {
               { title: "Creativity", desc: "Turning visions into reality." },
               { title: "Sustainability", desc: "We are dedicated to eco-friendly processes, prioritizing sustainability at every step" },
               { title: "Craftsmanship", desc: "We transform designs into forms, showcasing our dedication to quality in every piece." },
-            ].map((v, i) => (
+            ]).map((v: any, i: number) => (
               <div key={v.title} className="border-b border-border pb-4">
                 <h3 className="text-xl font-heading font-bold text-foreground mb-2 flex items-center gap-2">
                   <span className="text-primary">▸</span> {v.title}
@@ -163,15 +163,15 @@ export default async function AboutUs() {
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 text-foreground">OUR VISIONARIES</h2>
           </FadeIn>
           <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-start">
-            {[
-              { name: "Subramani Balakrishnan", role: "Founder", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468be_cc52d902f75f1f0fa9221180513fa632_IMG_8766.png", quote: "The visionary mindset transforms the realm of 3D printing, inspiring us to redefine possibilities and break through barriers to what we can achieve." },
-              { name: "Devna Subramani", role: "Co-Founder", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bd_c44840c6c9ac3242f750f9f9f781655d_IMG_8824-min.png", quote: "3D printing has promoted significant growth in manufacturing by emphasising sustainable practices and innovative solutions that benefit both people and the environment.", stagger: true },
-              { name: "Bindu Subramani", role: "Managing Director", img: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468c2_f4ef3785a4956a9ce3de7cff1e6bcd94_20240529_115643-min.png", quote: "3D printing represents a significant advancement at the intersection of technology and design, fostering new opportunities for innovation." },
-            ].map((person, i) => (
-              <FadeIn key={person.name} delay={0.1 * i} direction="up" className={`w-full ${person.stagger ? 'md:mt-16' : ''}`}>
+            {(aboutPageData?.visionaries || [
+              { name: "Subramani Balakrishnan", role: "Founder", imageUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468be_cc52d902f75f1f0fa9221180513fa632_IMG_8766.png", quote: "The visionary mindset transforms the realm of 3D printing, inspiring us to redefine possibilities and break through barriers to what we can achieve." },
+              { name: "Devna Subramani", role: "Co-Founder", imageUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bd_c44840c6c9ac3242f750f9f9f781655d_IMG_8824-min.png", quote: "3D printing has promoted significant growth in manufacturing by emphasising sustainable practices and innovative solutions that benefit both people and the environment.", stagger: true },
+              { name: "Bindu Subramani", role: "Managing Director", imageUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468c2_f4ef3785a4956a9ce3de7cff1e6bcd94_20240529_115643-min.png", quote: "3D printing represents a significant advancement at the intersection of technology and design, fostering new opportunities for innovation." },
+            ]).map((person: any, i: number) => (
+              <FadeIn key={person.name} delay={0.1 * i} direction="up" className={`w-full ${person.stagger || (i % 2 !== 0) ? 'md:mt-16' : ''}`}>
                 <div className="group relative w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-muted border border-border/50">
                   <Image 
-                    src={person.img} 
+                    src={person.imageUrl || person.img} 
                     alt={person.name} 
                     fill 
                     sizes="(max-width: 768px) 100vw, 33vw" 
@@ -211,7 +211,7 @@ export default async function AboutUs() {
         </FadeIn>
         
         <div className="grid md:grid-cols-2 gap-x-16 gap-y-8">
-          {[
+          {(aboutPageData?.whyChooseUsList || [
             { title: "Advanced Pellet Printers", desc: "Our state-of-the-art pellet printers offer unmatched precision and quality, enabling the creation of intricate and robust large format 3D prints." },
             { title: "Top-of-the-Line 3D Printers", desc: "For smaller elements, we use high-precision FDM 3D printers to ensure meticulous detail and superior quality." },
             { title: "Sustainable Practices", desc: "Committed to sustainability, we incorporate recycling into our manufacturing processes, minimizing our carbon footprint and supporting a circular economy." },
@@ -220,7 +220,7 @@ export default async function AboutUs() {
             { title: "Rapid Production", desc: "Our fast production capabilities ensure quick turnaround times, allowing you to meet tight deadlines without sacrificing quality." },
             { title: "Versatility", desc: "Our technology supports a wide range of applications, from architectural elements and sculptures to intricate decorative pieces, ensuring versatility in every project." },
             { title: "Expert Team", desc: "Our talented designers and fabricators bring expertise and creativity to every project, ensuring exceptional results." },
-          ].map((v, i) => (
+          ]).map((v: any, i: number) => (
             <FadeIn key={v.title} delay={0.05 * i} direction="up" className="flex gap-4 items-start">
               <div className="mt-1 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary">✓</div>
               <div>
@@ -240,13 +240,13 @@ export default async function AboutUs() {
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16">CLIENTS</h2>
           </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
+            {(aboutPageData?.testimonials || [
               "I recently had the pleasure of commissioning a bespoke sculpture for a landscape project from INSCULP 3D. From start to finish, the process was seamless and exceeded our expectations in every way.",
               "As a restaurateur striving to create a unique dining experience, I turned to INSCULP 3D for their expertise in 3D-printed interior design. The innovative approach to blending technology with craftsmanship has truly transformed the place into a one-of-a-kind destination.",
               "I had the pleasure of working with INSCULP 3D to create custom props for our game show, and I couldn't be more impressed with the outcome.",
               "We recently worked with INSCULP 3D to create awards for our annual ceremony, and they were nothing short of exceptional. A demonstration of unparalleled creativity, professionalism, and attention to detail.",
               "Even though we are a 3D printing company, our core competency is in crafting forms."
-            ].map((quote, i) => (
+            ]).map((quote: string, i: number) => (
               <FadeIn key={i} delay={0.1 * i} direction="up" className="bg-background/10 p-8 rounded-3xl backdrop-blur-sm border border-background/20">
                 <div className="text-primary text-4xl font-heading mb-4">&quot;</div>
                 <p className="font-josefin font-normal text-white leading-relaxed italic">{quote}</p>
@@ -266,11 +266,11 @@ export default async function AboutUs() {
         </FadeIn>
         
         <div className="grid md:grid-cols-3 gap-12">
-          {[
+          {(aboutPageData?.technologyList || [
             { title: "Large Format 3D Printing", desc: "Our printers can handle projects up to 3 meters in height, ideal for creating grand architectural elements to large artistic sculptures with exceptional detail." },
             { title: "Pellet Printing", desc: "Using pellet-fed printers, we achieve material efficiency and cost-effectiveness. This method reduces costs and allows for the use of a wide range of materials, including recycled plastics." },
             { title: "Sustainable 3D Printing", desc: "We focus on sustainability by using biodegradable materials, energy-efficient processes, and recycling systems for 3D print waste, supporting a circular economy." },
-          ].map((tech, i) => (
+          ]).map((tech: any, i: number) => (
             <FadeIn key={tech.title} delay={0.1 * i} direction="up" className="bg-muted p-8 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors">
               <h3 className="text-2xl font-heading font-bold text-primary mb-4">{tech.title}</h3>
               <p className="font-josefin font-light text-foreground/80 leading-relaxed">{tech.desc}</p>

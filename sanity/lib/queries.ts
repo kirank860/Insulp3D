@@ -8,3 +8,96 @@ export const getPageQuery = groq`
     heroDescription
   }
 `
+
+export const getHomePageQuery = groq`
+  *[_type == "homePage"][0] {
+    marqueeTextTop,
+    marqueeTextBottom,
+    mainFeatures[] {
+      title,
+      description,
+      "imageUrl": image.asset->url
+    },
+    stats[] {
+      number,
+      label
+    },
+    whyChooseUs[] {
+      title,
+      description
+    },
+    ourServices[] {
+      title,
+      "imageUrl": image.asset->url
+    },
+    ourIndustries[] {
+      title,
+      "imageUrl": image.asset->url
+    },
+    processSteps[] {
+      step,
+      title,
+      description
+    }
+  }
+`
+
+export const getAboutPageQuery = groq`
+  *[_type == "aboutPage"][0] {
+    visionCards[] { title, desc },
+    missionDescription,
+    valuesList[] { title, desc },
+    coreValuesList[] { title, desc },
+    visionaries[] {
+      name,
+      role,
+      quote,
+      "imageUrl": image.asset->url
+    },
+    whyChooseUsList[] { title, desc },
+    testimonials,
+    technologyList[] { title, desc }
+  }
+`
+
+export const getServicesPageQuery = groq`
+  *[_type == "servicesPage"][0] {
+    featuredSections[] {
+      title,
+      subtitle,
+      description,
+      "image1Url": image1.asset->url,
+      "image2Url": image2.asset->url
+    },
+    technologyTitle,
+    technologyDescription,
+    technologyList[] { title, desc },
+    processTitle,
+    processSteps[] { step, title, desc }
+  }
+`
+
+export const getSiteSettingsQuery = groq`
+  *[_type == "siteSettings"][0] {
+    email,
+    phone,
+    address,
+    businessHours,
+    socialLinks {
+      facebook,
+      instagram,
+      linkedin
+    }
+  }
+`
+
+export const getServicesQuery = groq`
+  *[_type == "service"] {
+    title,
+    "slug": slug.current,
+    description,
+    "iconUrl": icon.asset->url,
+    "mainImageUrl": mainImage.asset->url,
+    details
+  }
+`

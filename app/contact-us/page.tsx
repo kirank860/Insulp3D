@@ -10,7 +10,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 import { client } from "@/sanity/lib/client";
-import { getPageQuery } from "@/sanity/lib/queries";
+import { getPageQuery, getSiteSettingsQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Contact Us | InSculp 3D",
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 
 export default async function ContactUs() {
   const pageContent = await client.fetch(getPageQuery, { slug: '/contact-us' });
+  const siteSettings = await client.fetch(getSiteSettingsQuery);
   const title = pageContent?.heroTitle || "Share your vision, and let us craft it for you";
   const description = pageContent?.heroDescription || "A passion for creation, innovation, and collaboration fuels us. Whether you have a bold design or just the seeds of an idea, we specialise in transforming visions into remarkable realities. Don't let your creativity sit on the sidelines—join us in crafting something exceptional! Contact us today to start a journey to elevate your ideas beyond your wildest expectations. Let's create something extraordinary together!";
 
@@ -35,22 +36,29 @@ export default async function ContactUs() {
             We thrive on creation, innovation and collaboration. Do you have a detailed design, or simply a vision? Let our team handle it for you. Get in touch with us today or visit us to craft your form.
           </p>
           <div className="space-y-4 pt-8">
-            <p className="text-foreground font-josefin font-light"><strong>Email:</strong> info@insculp3d.com</p>
-            <p className="text-foreground font-josefin font-light"><strong>Phone:</strong> +971 55 2313 447</p>
-            <p className="text-foreground font-josefin font-light"><strong>Address:</strong> YS International WH 05, Dubai Investment Park, DIP, Dubai, UAE</p>
+            <p className="text-foreground font-josefin font-light"><strong>Email:</strong> {siteSettings?.email || "info@insculp3d.com"}</p>
+            <p className="text-foreground font-josefin font-light"><strong>Phone:</strong> {siteSettings?.phone || "+971 55 2313 447"}</p>
+            <p className="text-foreground font-josefin font-light"><strong>Address:</strong> {siteSettings?.address || "YS International WH 05, Dubai Investment Park, DIP, Dubai, UAE"}</p>
           </div>
           <div className="space-y-4 pt-8 border-t border-border/50">
             <h3 className="text-xl font-heading font-bold text-primary">Business Hours:</h3>
-            <p className="text-foreground font-josefin font-light">Monday - Friday: 9:00 AM - 6:00 PM</p>
-            <p className="text-foreground font-josefin font-light">Saturday: 9:00 AM - 6:00 PM</p>
-            <p className="text-foreground font-josefin font-light">Sunday: Closed</p>
+            {(siteSettings?.businessHours || ["Monday - Friday: 9:00 AM - 6:00 PM", "Saturday: 9:00 AM - 6:00 PM", "Sunday: Closed"]).map((hours: string, i: number) => (
+              <p key={i} className="text-foreground font-josefin font-light">{hours}</p>
+            ))}
           </div>
           <div className="space-y-4 pt-8 border-t border-border/50">
             <h3 className="text-xl font-heading font-bold text-primary">Follow Us:</h3>
             <div className="flex gap-4">
-              <a href="#" className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446895_facebook%20(1).png" alt="Facebook" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>
-              <a href="#" className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446894_instagram%20(1).png" alt="Instagram" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>
-              <a href="#" className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446893_linkedin%20(3).png" alt="LinkedIn" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>
+              {siteSettings?.socialLinks?.facebook && <a href={siteSettings.socialLinks.facebook} className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446895_facebook%20(1).png" alt="Facebook" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>}
+              {siteSettings?.socialLinks?.instagram && <a href={siteSettings.socialLinks.instagram} className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446894_instagram%20(1).png" alt="Instagram" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>}
+              {siteSettings?.socialLinks?.linkedin && <a href={siteSettings.socialLinks.linkedin} className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446893_linkedin%20(3).png" alt="LinkedIn" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>}
+              {(!siteSettings?.socialLinks) && (
+                <>
+                  <a href="#" className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446895_facebook%20(1).png" alt="Facebook" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>
+                  <a href="#" className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446894_instagram%20(1).png" alt="Instagram" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>
+                  <a href="#" className="hover:scale-110 transition-transform"><Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446893_linkedin%20(3).png" alt="LinkedIn" width={32} height={32} className="opacity-80 hover:opacity-100" /></a>
+                </>
+              )}
             </div>
           </div>
         </FadeIn>

@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { getSiteSettingsQuery } from "@/sanity/lib/queries";
 
-export default function Footer() {
+export default async function Footer() {
+  const siteSettings = await client.fetch(getSiteSettingsQuery);
   return (
     <footer className="w-full bg-foreground text-white py-16 mt-auto">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -30,7 +33,7 @@ export default function Footer() {
         <div>
           <h4 className="font-heading font-semibold mb-4 text-white">Contact</h4>
           <ul className="space-y-3">
-            <li className="text-white/70">Dubai, UAE</li>
+            <li className="text-white/70">{siteSettings?.address || "Dubai, UAE"}</li>
             <li><Link href="/contact-us" className="text-white hover:text-white/80 transition-colors">Get in touch ➔</Link></li>
           </ul>
         </div>

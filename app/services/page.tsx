@@ -10,7 +10,6 @@ import Scene from "@/components/three/Scene";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-import { servicesData } from "@/lib/data/services";
 
 export const metadata: Metadata = {
   title: "Services & Industries | InSculp 3D",
@@ -19,10 +18,12 @@ export const metadata: Metadata = {
 };
 
 import { client } from "@/sanity/lib/client";
-import { getPageQuery } from "@/sanity/lib/queries";
+import { getPageQuery, getServicesPageQuery, getServicesQuery } from "@/sanity/lib/queries";
 
 export default async function Services() {
   const pageContent = await client.fetch(getPageQuery, { slug: '/services' });
+  const servicesPageData = await client.fetch(getServicesPageQuery);
+  const servicesList = await client.fetch(getServicesQuery);
   const title = pageContent?.heroTitle || "Our Services & Industries";
   const description = pageContent?.heroDescription || "We provide a wide array of services to meet your needs, all conveniently available under one roof. With our in-house capabilities, we can accommodate various aesthetic preferences, whether you're seeking a raw finish or something more specialized, such as painting and mixed media production.";
 
@@ -40,100 +41,130 @@ export default async function Services() {
 
       {/* Services Grid (Icons) */}
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-        {servicesData.map((service, i) => (
+        {(servicesList?.length > 0 ? servicesList : [
+          { title: "Architectural Ceiling", slug: "architectural-ceiling", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468e7_arcticons_3d-modeling-app.svg" },
+          { title: "Wall Panels", slug: "wall-panels", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg" },
+          { title: "Bespoke Furniture", slug: "bespoke-furniture", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468e8_mdi_sofa-outline.svg" },
+          { title: "Art Installations", slug: "art-installations", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468e9_ph_lamp.svg" },
+          { title: "Visual Merchandising", slug: "visual-merchandising", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446844_Vector-2.svg" },
+          { title: "Sculptures", slug: "sculptures", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468e6_game-icons_stone-bust.svg" },
+          { title: "Architectural Models", slug: "architectural-models", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468eb_fluent_city-20-regular.svg" },
+          { title: "Industrial Prototyping", slug: "industrial-prototyping", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468ea_clarity_tools-line.svg" },
+        ]).map((service: any, i: number) => (
           <FadeIn key={service.title} delay={0.1 * i} direction="up" className="h-full">
             <Link href={`/services/${service.slug}`} className="bg-muted p-10 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors group text-center flex flex-col items-center h-full justify-center">
-              <Image src={service.icon} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
+              <Image src={service.iconUrl || service.icon} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
             </Link>
           </FadeIn>
         ))}
       </div>
 
-      {/* Architectural Ceiling Feature */}
-      <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center px-6 lg:px-8">
-        <FadeIn direction="right">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="w-full aspect-square rounded-2xl bg-border relative overflow-hidden shadow-2xl">
-              <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344688f_Component%206.svg" alt="3D Printed Architectural Ceiling Panels Dubai" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-            </div>
-            <div className="w-full aspect-[4/5] rounded-2xl bg-border mt-8 relative overflow-hidden shadow-2xl">
-              <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446890_Frame%2048.png" alt="Custom Additive Manufacturing Ceiling Elements" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-            </div>
-          </div>
-        </FadeIn>
-        <FadeIn direction="left" className="space-y-6">
-          <TextReveal>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">Architectural Ceiling</h2>
-          </TextReveal>
-          <h3 className="text-xl font-josefin font-bold text-primary tracking-widest uppercase">Redefining Interior Spaces</h3>
-          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed">
-            In the dynamic landscape of modern interior architecture, large-format 3D printing stands as a beacon of innovation. We specialize in producing bespoke architectural ceiling panels and custom parametric structures that transform commercial and residential spaces across Dubai and the EMEA region.
-          </p>
-          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed mb-8">
-            Leveraging cutting-edge additive manufacturing, we eliminate traditional constraints, allowing architects to conceive and install breathtaking, lightweight, and acoustically optimized ceiling elements with unmatched precision.
-          </p>
-        </FadeIn>
-      </section>
-
-      {/* Large Format Prototyping Feature */}
-      <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center">
-        <FadeIn direction="right" className="order-2 md:order-1 space-y-6">
-          <TextReveal>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">Large-Scale Prototyping</h2>
-          </TextReveal>
-          <h3 className="text-xl font-josefin font-bold text-primary tracking-widest uppercase">Up to 3 Meters in Height</h3>
-          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed">
-            When standard 3D printing companies hit their size limits, InSculp 3D steps in. Our advanced industrial pellet printers and state-of-the-art FDM machines are capable of executing massive, seamless prints up to 3 meters tall.
-          </p>
-          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed mb-8">
-            From highly detailed aerospace prototypes to large-scale industrial mockups and cinematic props, we provide the ultimate solution for rapid manufacturing in the UAE. Our process ensures robust structural integrity, precise dimensional accuracy, and remarkably fast turnaround times.
-          </p>
-        </FadeIn>
-        <FadeIn direction="left" className="order-1 md:order-2 w-full">
-          <div className="w-full aspect-square rounded-3xl bg-border shadow-2xl relative overflow-hidden">
-            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" alt="Large Format 3D Printed Industrial Prototype" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* Retail Display Feature */}
-      <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center">
-        <FadeIn direction="right" className="w-full">
-          <div className="w-full aspect-[4/5] rounded-3xl bg-border shadow-2xl relative overflow-hidden">
-            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/679b72388458dc748e83e1bc_b2aa567d67b672de17f0dd53ae3b0416_GISOU%20NY%20SIDE.png" alt="Bespoke Retail Display 3D Printing UAE" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-          </div>
-        </FadeIn>
-        <FadeIn direction="left" className="space-y-6">
-          <TextReveal>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">Retail & Visual Merchandising</h2>
-          </TextReveal>
-          <h3 className="text-xl font-josefin font-bold text-primary tracking-widest uppercase">Captivate Your Audience</h3>
-          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed">
-            In the highly competitive luxury retail market of Dubai, standing out requires extraordinary visual merchandising. We craft eye-catching, custom 3D printed pop-up displays, giant window installations, and immersive brand activations.
-          </p>
-          <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed mb-8">
-            Our comprehensive service includes full post-processing—sanding, smoothing, painting, and mixed-media finishing—ensuring your retail display reflects the premium quality of your brand. If you can dream it, we can print and install it.
-          </p>
-        </FadeIn>
-      </section>
+      {/* Dynamic Featured Sections */}
+      {(servicesPageData?.featuredSections || [
+        {
+          title: "Architectural Ceiling",
+          subtitle: "Redefining Interior Spaces",
+          description: "In the dynamic landscape of modern interior architecture, large-format 3D printing stands as a beacon of innovation. We specialize in producing bespoke architectural ceiling panels and custom parametric structures that transform commercial and residential spaces across Dubai and the EMEA region.\n\nLeveraging cutting-edge additive manufacturing, we eliminate traditional constraints, allowing architects to conceive and install breathtaking, lightweight, and acoustically optimized ceiling elements with unmatched precision.",
+          image1Url: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344688f_Component%206.svg",
+          image2Url: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446890_Frame%2048.png"
+        },
+        {
+          title: "Large-Scale Prototyping",
+          subtitle: "Up to 3 Meters in Height",
+          description: "When standard 3D printing companies hit their size limits, InSculp 3D steps in. Our advanced industrial pellet printers and state-of-the-art FDM machines are capable of executing massive, seamless prints up to 3 meters tall.\n\nFrom highly detailed aerospace prototypes to large-scale industrial mockups and cinematic props, we provide the ultimate solution for rapid manufacturing in the UAE. Our process ensures robust structural integrity, precise dimensional accuracy, and remarkably fast turnaround times.",
+          image1Url: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png"
+        },
+        {
+          title: "Retail & Visual Merchandising",
+          subtitle: "Captivate Your Audience",
+          description: "In the highly competitive luxury retail market of Dubai, standing out requires extraordinary visual merchandising. We craft eye-catching, custom 3D printed pop-up displays, giant window installations, and immersive brand activations.\n\nOur comprehensive service includes full post-processing—sanding, smoothing, painting, and mixed-media finishing—ensuring your retail display reflects the premium quality of your brand. If you can dream it, we can print and install it.",
+          image1Url: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/679b72388458dc748e83e1bc_b2aa567d67b672de17f0dd53ae3b0416_GISOU%20NY%20SIDE.png"
+        }
+      ]).map((section: any, idx: number) => {
+        const isEven = idx % 2 === 0;
+        return (
+          <section key={section.title} className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center px-6 lg:px-8">
+            <FadeIn direction={isEven ? "right" : "left"} className={isEven ? "" : "order-2 md:order-1 space-y-6"}>
+              {isEven ? (
+                section.image2Url ? (
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="w-full aspect-square rounded-2xl bg-border relative overflow-hidden shadow-2xl">
+                      <Image src={section.image1Url} alt={section.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                    </div>
+                    <div className="w-full aspect-[4/5] rounded-2xl bg-border mt-8 relative overflow-hidden shadow-2xl">
+                      <Image src={section.image2Url} alt={section.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-full aspect-square rounded-3xl bg-border shadow-2xl relative overflow-hidden">
+                    <Image src={section.image1Url} alt={section.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                  </div>
+                )
+              ) : (
+                <>
+                  <TextReveal>
+                    <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">{section.title}</h2>
+                  </TextReveal>
+                  {section.subtitle && (
+                    <h3 className="text-xl font-josefin font-bold text-primary tracking-widest uppercase">{section.subtitle}</h3>
+                  )}
+                  <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed whitespace-pre-line">
+                    {section.description}
+                  </p>
+                </>
+              )}
+            </FadeIn>
+            <FadeIn direction={isEven ? "left" : "right"} className={isEven ? "space-y-6" : "order-1 md:order-2 w-full"}>
+              {isEven ? (
+                <>
+                  <TextReveal>
+                    <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">{section.title}</h2>
+                  </TextReveal>
+                  {section.subtitle && (
+                    <h3 className="text-xl font-josefin font-bold text-primary tracking-widest uppercase">{section.subtitle}</h3>
+                  )}
+                  <p className="text-lg text-foreground/70 font-josefin font-light leading-relaxed whitespace-pre-line">
+                    {section.description}
+                  </p>
+                </>
+              ) : (
+                section.image2Url ? (
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="w-full aspect-square rounded-2xl bg-border relative overflow-hidden shadow-2xl">
+                      <Image src={section.image1Url} alt={section.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                    </div>
+                    <div className="w-full aspect-[4/5] rounded-2xl bg-border mt-8 relative overflow-hidden shadow-2xl">
+                      <Image src={section.image2Url} alt={section.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-full aspect-[4/5] rounded-3xl bg-border shadow-2xl relative overflow-hidden">
+                    <Image src={section.image1Url} alt={section.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                  </div>
+                )
+              )}
+            </FadeIn>
+          </section>
+        );
+      })}
 
       {/* Materials & Tech Grid */}
       <section className="max-w-7xl mx-auto w-full mt-32 bg-muted p-12 md:p-16 rounded-[3rem] border border-border/50">
         <div className="text-center mb-16">
           <TextReveal>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">Technology & Materials</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">{servicesPageData?.technologyTitle || "Technology & Materials"}</h2>
           </TextReveal>
           <p className="text-xl text-foreground/70 font-josefin font-light max-w-2xl mx-auto">
-            We operate the most advanced digital fabrication fleet in the region, prioritizing both precision and eco-conscious sustainability.
+            {servicesPageData?.technologyDescription || "We operate the most advanced digital fabrication fleet in the region, prioritizing both precision and eco-conscious sustainability."}
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          {[
+          {(servicesPageData?.technologyList || [
             { title: "Advanced Pellet Extrusion", desc: "Our pellet-fed 3D printers offer unmatched speed and material cost-efficiency for massive prints, enabling rapid large-scale production runs." },
             { title: "Sustainable Plastics", desc: "We actively champion the circular economy by utilizing recyclable and biodegradable polymers, ensuring your large installations are eco-friendly." },
             { title: "High-Precision FDM", desc: "For projects requiring microscopic detail and intricate geometries, our array of top-tier FDM printers guarantees flawless execution every time." },
-          ].map((item, i) => (
+          ]).map((item: any, i: number) => (
             <FadeIn key={item.title} delay={0.1 * i} direction="up" className="bg-background p-8 rounded-3xl shadow-sm">
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                 <div className="w-4 h-4 bg-primary rounded-full animate-pulse" />
@@ -148,20 +179,20 @@ export default async function Services() {
       {/* The InSculp Process */}
       <section className="max-w-7xl mx-auto w-full mt-32 mb-20 text-center">
         <TextReveal>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-16">Our Proven Workflow</h2>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-16">{servicesPageData?.processTitle || "Our Proven Workflow"}</h2>
         </TextReveal>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
+          {(servicesPageData?.processSteps || [
             { step: "01", title: "Consultation", desc: "We evaluate your concept, requirements, and feasibility." },
             { step: "02", title: "3D Modeling", desc: "Our engineers prepare and optimize digital CAD designs." },
             { step: "03", title: "Fabrication", desc: "Industrial-grade 3D printing brings the design to reality." },
             { step: "04", title: "Finishing", desc: "Sanding, painting, and professional post-processing." },
-          ].map((item, i) => (
+          ]).map((item: any, i: number) => (
             <FadeIn key={item.step} delay={0.1 * i} direction="up" className="relative">
               <div className="text-6xl md:text-8xl font-heading font-black text-primary/10 mb-4">{item.step}</div>
               <h3 className="text-xl font-heading font-bold text-foreground mb-2 relative z-10">{item.title}</h3>
               <p className="text-sm md:text-base text-foreground/70 font-josefin font-light relative z-10">{item.desc}</p>
-              {i < 3 && <div className="hidden md:block absolute top-12 left-2/3 w-full h-[1px] bg-gradient-to-r from-border to-transparent -z-10" />}
+              {i < (servicesPageData?.processSteps?.length || 4) - 1 && <div className="hidden md:block absolute top-12 left-2/3 w-full h-[1px] bg-gradient-to-r from-border to-transparent -z-10" />}
             </FadeIn>
           ))}
         </div>
