@@ -6,8 +6,11 @@ import { ParallaxImage } from "@/components/gsap/ParallaxImage";
 import { TextReveal } from "@/components/gsap/TextReveal";
 import { MagneticButton } from "@/components/gsap/MagneticButton";
 import { VelocityScroll } from "@/components/gsap/VelocityScroll";
+import Scene from "@/components/three/Scene";
 import Image from "next/image";
+import Link from "next/link";
 import { Metadata } from "next";
+import { servicesData } from "@/lib/data/services";
 
 export const metadata: Metadata = {
   title: "Services & Industries | InSculp 3D",
@@ -17,8 +20,9 @@ export const metadata: Metadata = {
 
 export default function Services() {
   return (
-    <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto text-center mb-24">
+    <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8 relative overflow-hidden">
+      <Scene />
+      <div className="max-w-4xl mx-auto text-center mb-24 relative z-10">
         <WordPullUp words="Our Services & Industries" className="text-5xl md:text-7xl font-heading text-foreground mb-8 uppercase" />
         <FadeIn delay={0.4}>
           <p className="text-xl text-foreground/80 font-josefin font-light max-w-2xl mx-auto">
@@ -26,44 +30,30 @@ export default function Services() {
           </p>
         </FadeIn>
       </div>
-      
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[
-          { title: "3D PRINTING AND PROTOTYPING", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b1_Asset%201.svg" },
-          { title: "3D DESIGNING AND MODELING", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468af_Asset%204.svg" },
-          { title: "ARCHITECTURAL SCALE MODELS", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b2_Asset%206.svg" },
-          { title: "ARCHITECTURAL ELEMENTS", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b5_Asset%208.svg" },
-          { title: "FURNITURE, POTTERY AND DECOR", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b0_Asset%209.svg" },
-          { title: "FINISHING AND MIXED MEDIA PRODUCTION", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b4_Asset%203.svg" },
-          { title: "SIGNAGE 3D PRINTING", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b3_Asset%2010.svg" },
-          { title: "RETAIL DISPLAY AND VISUAL MERCHANDISING", icon: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468ad_Asset%2012.svg" },
-        ].map((service, i) => (
-          <FadeIn key={service.title} delay={0.1 * i} direction="up" className="bg-muted p-10 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors group text-center flex flex-col items-center">
-            <Image src={service.icon} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
+
+      {/* Services Grid (Icons) */}
+      <div className="max-w-7xl mx-auto w-full px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        {servicesData.map((service, i) => (
+          <FadeIn key={service.title} delay={0.1 * i} direction="up" className="h-full">
+            <Link href={`/services/${service.slug}`} className="bg-muted p-10 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors group text-center flex flex-col items-center h-full justify-center">
+              <Image src={service.icon} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
+              <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
+            </Link>
           </FadeIn>
         ))}
       </div>
 
       {/* Architectural Ceiling Feature */}
-      <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center">
+      <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center px-6 lg:px-8">
         <FadeIn direction="right">
-          <VelocityScroll intensity={1.5}>
-            <div className="grid grid-cols-2 gap-4">
-              <ParallaxImage 
-                src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344688f_Component%206.svg" 
-                alt="3D Printed Architectural Ceiling Panels Dubai" 
-                className="w-full aspect-square rounded-2xl bg-border" 
-                speed={1.1}
-              />
-              <ParallaxImage 
-                src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446890_Frame%2048.png" 
-                alt="Custom Additive Manufacturing Ceiling Elements" 
-                className="w-full aspect-[4/5] rounded-2xl bg-border mt-8" 
-                speed={1.2}
-              />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="w-full aspect-square rounded-2xl bg-border relative overflow-hidden shadow-2xl">
+              <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344688f_Component%206.svg" alt="3D Printed Architectural Ceiling Panels Dubai" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
             </div>
-          </VelocityScroll>
+            <div className="w-full aspect-[4/5] rounded-2xl bg-border mt-8 relative overflow-hidden shadow-2xl">
+              <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446890_Frame%2048.png" alt="Custom Additive Manufacturing Ceiling Elements" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            </div>
+          </div>
         </FadeIn>
         <FadeIn direction="left" className="space-y-6">
           <TextReveal>
@@ -93,29 +83,19 @@ export default function Services() {
             From highly detailed aerospace prototypes to large-scale industrial mockups and cinematic props, we provide the ultimate solution for rapid manufacturing in the UAE. Our process ensures robust structural integrity, precise dimensional accuracy, and remarkably fast turnaround times.
           </p>
         </FadeIn>
-        <FadeIn direction="left" className="order-1 md:order-2">
-          <VelocityScroll intensity={-1.5}>
-            <ParallaxImage 
-              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" 
-              alt="Large Format 3D Printed Industrial Prototype" 
-              className="w-full aspect-square rounded-3xl bg-border shadow-2xl" 
-              speed={1.15}
-            />
-          </VelocityScroll>
+        <FadeIn direction="left" className="order-1 md:order-2 w-full">
+          <div className="w-full aspect-square rounded-3xl bg-border shadow-2xl relative overflow-hidden">
+            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" alt="Large Format 3D Printed Industrial Prototype" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+          </div>
         </FadeIn>
       </section>
 
       {/* Retail Display Feature */}
       <section className="max-w-7xl mx-auto w-full mt-32 grid md:grid-cols-2 gap-12 items-center">
-        <FadeIn direction="right">
-          <VelocityScroll intensity={1.5}>
-            <ParallaxImage 
-              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/679b72388458dc748e83e1bc_b2aa567d67b672de17f0dd53ae3b0416_GISOU%20NY%20SIDE.png" 
-              alt="Bespoke Retail Display 3D Printing UAE" 
-              className="w-full aspect-[4/5] rounded-3xl bg-border shadow-2xl" 
-              speed={1.2}
-            />
-          </VelocityScroll>
+        <FadeIn direction="right" className="w-full">
+          <div className="w-full aspect-[4/5] rounded-3xl bg-border shadow-2xl relative overflow-hidden">
+            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/679b72388458dc748e83e1bc_b2aa567d67b672de17f0dd53ae3b0416_GISOU%20NY%20SIDE.png" alt="Bespoke Retail Display 3D Printing UAE" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+          </div>
         </FadeIn>
         <FadeIn direction="left" className="space-y-6">
           <TextReveal>

@@ -6,6 +6,7 @@ import { VelocityScroll } from "@/components/gsap/VelocityScroll";
 import { MagneticButton } from "@/components/gsap/MagneticButton";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 
@@ -19,11 +20,10 @@ export default async function Projects() {
   const projects = await client.fetch(`*[_type == "project"] | order(_createdAt desc)`);
   
   const fallbackProjects = [
-    { title: "ART AND SCULPTURES", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798d60700323216feaa583d_0284f828223d6f3f5000536e9914d54b_PEACOCK%20FRONT.png" },
-    { title: "VISUAL MERCHANDISING", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/68021546243cea9672fc603a_WhatsApp%20Image%202024-11-22%20at%2011.25.06%20AM-3.jpeg" },
-    { title: "ART AND SCULPTURES", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446891_f0173e3520ccb2a6a0517d99d375fa70_Frame%2050.avif" },
-    { title: "AUTOMOBILE TRANSFORMATION", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc1ba1a6bbd3ca34f680_WhatsApp%20Image%202024-09-24%20at%2015.29.04_1a69ca40.jpg" },
-    { title: "RETAIL DISPLAY UNITS", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbab4bb5b53988f2685d_IMG-20241105-WA0040.jpg" },
+    { title: "ART AND SCULPTURES", image: "/assets/projects/1.png" },
+    { title: "VISUAL MERCHANDISING", image: "/assets/projects/2.jpg" },
+    { title: "ART AND SCULPTURES", image: "/assets/projects/3.jpg" },
+    { title: "AUTOMOBILE TRANSFORMATION", image: "/assets/projects/4.jpg" },
   ];
 
   const displayProjects = projects.length > 0 ? projects : fallbackProjects;
@@ -31,7 +31,7 @@ export default async function Projects() {
   return (
     <div className="flex flex-col min-h-screen pt-24 pb-24 px-6 lg:px-8 bg-background">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center py-16">
+      <section className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center py-16 min-h-[70vh]">
         <FadeIn direction="right" className="space-y-6 relative z-10">
           <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground leading-tight uppercase">
             Our Selective Projects
@@ -48,15 +48,16 @@ export default async function Projects() {
             </Link>
           </MagneticButton>
         </FadeIn>
-        <FadeIn direction="left" className="h-full w-full">
-          <VelocityScroll intensity={1.5}>
-            <ParallaxImage 
+        <FadeIn direction="left" className="h-full w-full min-h-[400px] md:min-h-[500px] flex items-center justify-center">
+          <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative bg-border">
+            <Image 
               src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468bf_edb60f66c7e9b3abcc5e426969c4c1e0_lounge%20chair%20TWO%20TONE.jpg" 
-              alt="Lounge Chair" 
-              className="w-full aspect-[4/3] rounded-3xl shadow-2xl bg-border"
-              speed={1.15}
+              alt="Lounge Chair TWO TONE" 
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover" 
             />
-          </VelocityScroll>
+          </div>
         </FadeIn>
       </section>
 

@@ -27,25 +27,30 @@ export function HorizontalScroll({ children, header, className = "" }: Horizonta
       
       if (!container || !wrapper) return;
 
-      // Calculate how far to scroll horizontally
-      // We subtract the window width so the last item stops at the right edge
-      const scrollAmount = wrapper.scrollWidth - window.innerWidth;
+      // Use GSAP matchMedia to only apply scrub pinning on desktop (min-width: 768px)
+      const mm = gsap.matchMedia();
       
-      // If content doesn't overflow, don't pin
-      if (scrollAmount <= 0) return;
+      mm.add("(min-width: 768px)", () => {
+        // Calculate how far to scroll horizontally
+        const scrollAmount = wrapper.scrollWidth - window.innerWidth;
+        
+        if (scrollAmount <= 0) return;
 
-      gsap.to(wrapper, {
-        x: -scrollAmount,
-        ease: "none",
-        scrollTrigger: {
-          trigger: container,
-          start: "top top",
-          end: () => `+=${scrollAmount}`,
-          pin: true,
-          scrub: 1, // Add 1s smoothing to the scrub
-          invalidateOnRefresh: true, // Recalculate on resize
-        }
+        gsap.to(wrapper, {
+          x: -scrollAmount,
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top top",
+            end: () => `+=${scrollAmount}`,
+            pin: true,
+            scrub: 1, 
+            invalidateOnRefresh: true,
+          }
+        });
       });
+
+      return () => mm.revert();
     }, containerRef);
 
     return () => ctx.revert();
@@ -54,7 +59,11 @@ export function HorizontalScroll({ children, header, className = "" }: Horizonta
   return (
     <div ref={containerRef} className={`overflow-hidden ${className}`}>
       {header && <div className="w-full z-10 shrink-0">{header}</div>}
-      <div ref={wrapperRef} className="flex flex-nowrap w-max will-change-transform h-full items-center px-6 lg:px-8">
+      <div 
+        ref={wrapperRef} 
+        className="flex flex-nowrap w-max md:w-max h-full items-center px-6 lg:px-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none pb-8 md:pb-0"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         {children}
       </div>
     </div>

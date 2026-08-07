@@ -244,7 +244,7 @@ export default function AboutUs() {
             ].map((quote, i) => (
               <FadeIn key={i} delay={0.1 * i} direction="up" className="bg-background/10 p-8 rounded-3xl backdrop-blur-sm border border-background/20">
                 <div className="text-primary text-4xl font-heading mb-4">&quot;</div>
-                <p className="font-josefin font-light text-background/90 leading-relaxed italic">{quote}</p>
+                <p className="font-josefin font-normal text-white leading-relaxed italic">{quote}</p>
               </FadeIn>
             ))}
           </div>

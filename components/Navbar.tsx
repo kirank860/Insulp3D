@@ -53,8 +53,8 @@ export default function Navbar() {
       )}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center gap-2 z-50 relative"
             onClick={(e) => {
               if (pathname === "/") {
@@ -63,12 +63,12 @@ export default function Navbar() {
               }
             }}
           >
-            <Image 
-              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344683c_Group.svg" 
-              alt="InSculp 3D Logo" 
+            <Image
+              src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344683c_Group.svg"
+              alt="InSculp 3D Logo"
               width={200}
               height={40}
-              className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 hover:scale-105" 
+              className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 hover:scale-105"
             />
           </Link>
 
@@ -86,7 +86,7 @@ export default function Navbar() {
                   >
                     {item.name}
                     {pathname === item.href && (
-                      <motion.div 
+                      <motion.div
                         layoutId="navbar-indicator"
                         className="absolute bottom-0 left-0 w-full h-[2px] bg-primary rounded-full"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
@@ -105,7 +105,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <button
             className="lg:hidden p-2 -mr-2 text-foreground z-50 relative"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
@@ -128,7 +128,7 @@ export default function Navbar() {
       {/* Mobile Nav Fullscreen Drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: "-100%" }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
@@ -137,7 +137,7 @@ export default function Navbar() {
           >
             <ul className="flex flex-col space-y-8 items-center text-center">
               {navItems.map((item, i) => (
-                <motion.li 
+                <motion.li
                   key={item.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

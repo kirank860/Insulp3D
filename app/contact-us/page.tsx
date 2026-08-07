@@ -19,19 +19,7 @@ export default function ContactUs() {
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 px-6 lg:px-8">
       <ClientHashScroll />
-      <div className="max-w-4xl mx-auto text-center mb-24">
-        <WordPullUp words="Share your vision, and let us craft it for you" className="text-5xl md:text-6xl font-heading text-foreground mb-8 uppercase" />
-        <FadeIn delay={0.4}>
-          <div className="flex flex-col items-center gap-8">
-            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" alt="Custom 3D Printing" width={800} height={800} className="w-64 h-auto rounded-3xl shadow-xl" />
-            <p className="text-xl text-foreground/80 font-josefin font-light max-w-3xl mx-auto leading-relaxed">
-              A passion for creation, innovation, and collaboration fuels us. Whether you have a bold design or just the seeds of an idea, we specialise in transforming visions into remarkable realities. Don&apos;t let your creativity sit on the sidelines—join us in crafting something exceptional! Contact us today to start a journey to elevate your ideas beyond your wildest expectations. Let&apos;s create something extraordinary together!
-            </p>
-          </div>
-        </FadeIn>
-      </div>
-      
-      <div id="contact-form" className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16 scroll-mt-32">
+      <div id="contact-form" className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16 scroll-mt-32 mb-24">
         <FadeIn delay={0.4} direction="right" className="space-y-8">
           <TextReveal>
             <h2 className="text-4xl font-heading font-bold text-foreground">Contact us</h2>
@@ -62,6 +50,18 @@ export default function ContactUs() {
 
         <FadeIn delay={0.6} direction="left" className="bg-muted p-10 rounded-3xl shadow-2xl border border-border/50">
           <ContactForm />
+        </FadeIn>
+      </div>
+
+      <div className="max-w-4xl mx-auto text-center mt-32">
+        <WordPullUp words="Share your vision, and let us craft it for you" className="text-5xl md:text-6xl font-heading text-foreground mb-8 uppercase" />
+        <FadeIn delay={0.4}>
+          <div className="flex flex-col items-center gap-8">
+            <Image src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png" alt="Custom 3D Printing" width={800} height={800} className="w-64 h-auto rounded-3xl shadow-xl" />
+            <p className="text-xl text-foreground/80 font-josefin font-light max-w-3xl mx-auto leading-relaxed">
+              A passion for creation, innovation, and collaboration fuels us. Whether you have a bold design or just the seeds of an idea, we specialise in transforming visions into remarkable realities. Don&apos;t let your creativity sit on the sidelines—join us in crafting something exceptional! Contact us today to start a journey to elevate your ideas beyond your wildest expectations. Let&apos;s create something extraordinary together!
+            </p>
+          </div>
         </FadeIn>
       </div>
       <WhatsAppButton />

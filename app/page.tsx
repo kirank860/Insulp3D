@@ -5,7 +5,6 @@ import { FadeIn } from "@/components/ui/fade-in";
 import { Marquee } from "@/components/ui/marquee";
 import { ParallaxImage } from "@/components/gsap/ParallaxImage";
 import { TextReveal } from "@/components/gsap/TextReveal";
-import { MagneticButton } from "@/components/gsap/MagneticButton";
 import { VelocityScroll } from "@/components/gsap/VelocityScroll";
 import { HorizontalScroll } from "@/components/gsap/HorizontalScroll";
 import { Metadata } from "next";
@@ -71,22 +70,18 @@ export default function Home() {
           </FadeIn>
 
           <FadeIn delay={0.8} direction="up" className="flex flex-col sm:flex-row items-center gap-4 pt-4 md:pt-8 w-full sm:w-auto">
-            <MagneticButton>
               <Link
                 href="/services"
-                className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground font-heading font-bold tracking-widest rounded-full transition-all hover:bg-primary/90 shadow-lg shadow-primary/25 block"
+                className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground font-heading font-bold tracking-widest rounded-full transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-lg shadow-primary/25 block"
               >
                 LEARN MORE
               </Link>
-            </MagneticButton>
-            <MagneticButton>
               <Link
                 href="/contact-us"
-                className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-foreground text-foreground font-heading font-bold tracking-widest rounded-full transition-all hover:bg-foreground hover:text-background block"
+                className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-foreground text-foreground font-heading font-bold tracking-widest rounded-full transition-all hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 block"
               >
                 CONTACT US
               </Link>
-            </MagneticButton>
           </FadeIn>
         </div>
       </section>
@@ -110,14 +105,14 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="w-full py-16 md:py-24 px-6 lg:px-8 bg-background relative overflow-hidden">
+      <section className="w-full py-16 md:py-24 px-6 lg:px-8 bg-background/60 backdrop-blur-sm relative overflow-hidden">
         {/* Giant Spinning Background Logo */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none w-[200vw] sm:w-[150vw] max-w-[1500px] aspect-square flex items-center justify-center opacity-[0.08]">
+        <div className="absolute top-[5%] left-0 -translate-x-[5%] z-0 pointer-events-none w-[150vw] sm:w-[100vw] max-w-[1200px] aspect-square flex items-center justify-center opacity-[0.06]">
           <Image 
             src="/assets/logo-icon.svg" 
             alt="Background Icon" 
-            width={1500} 
-            height={1500} 
+            width={1200} 
+            height={1200} 
             className="w-full h-full animate-[spin_120s_linear_infinite]" 
             priority={false}
           />
@@ -132,22 +127,18 @@ export default function Home() {
                 From large sculptures to scale models, we use our state-of-the-art large format 3D printing technology to push the size limitation offered by traditional 3D printing companies. Crafting forms by combining design, technology and innovation.
               </p>
             </FadeIn>
-            <FadeIn direction="left" delay={0.2}>
-              <VelocityScroll intensity={1.5}>
-                <div className="w-full aspect-square bg-border rounded-3xl overflow-hidden relative shadow-2xl">
-                  <Image src="/assets/3d1.png" alt="3D Printer" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-                </div>
-              </VelocityScroll>
+            <FadeIn direction="left" delay={0.2} className="h-full w-full">
+              <div className="w-full aspect-square bg-border rounded-3xl overflow-hidden relative shadow-2xl">
+                <Image src="/assets/3d1.png" alt="3D Printer" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+              </div>
             </FadeIn>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
-            <FadeIn direction="right" delay={0.2} className="order-2 lg:order-1">
-              <VelocityScroll intensity={-1.5}>
-                <div className="w-full aspect-square bg-border rounded-3xl overflow-hidden relative shadow-2xl">
-                  <Image src="/assets/3d2.png" alt="Sustainability" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-                </div>
-              </VelocityScroll>
+            <FadeIn direction="right" delay={0.2} className="order-2 lg:order-1 h-full w-full">
+              <div className="w-full aspect-square bg-border rounded-3xl overflow-hidden relative shadow-2xl">
+                <Image src="/assets/3d2.png" alt="Sustainability" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+              </div>
             </FadeIn>
             <FadeIn direction="left" className="order-1 lg:order-2">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 md:mb-6">Merging Sustainability And Affordability</h2>
@@ -165,15 +156,30 @@ export default function Home() {
               </p>
             </FadeIn>
             <FadeIn direction="left" delay={0.2} className="h-full w-full">
-              <ParallaxImage 
-                src="/assets/3d3.png" 
-                alt="Global Network" 
-                className="w-full aspect-square rounded-3xl shadow-2xl bg-border"
-                speed={1.15}
-              />
+              <div className="w-full aspect-square rounded-3xl overflow-hidden shadow-2xl bg-border relative">
+                <Image 
+                  src="/assets/3d3.png" 
+                  alt="Global Network" 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, 50vw" 
+                  className="object-cover" 
+                />
+              </div>
             </FadeIn>
           </div>
 
+        </div>
+
+        {/* Second Giant Spinning Background Logo (Bottom) */}
+        <div className="absolute bottom-[5%] right-0 translate-x-[10%] z-0 pointer-events-none w-[150vw] sm:w-[100vw] max-w-[1200px] aspect-square flex items-center justify-center opacity-[0.06]">
+          <Image 
+            src="/assets/logo-icon.svg" 
+            alt="Background Icon" 
+            width={1200} 
+            height={1200} 
+            className="w-full h-full animate-[spin_150s_linear_infinite_reverse]" 
+            priority={false}
+          />
         </div>
       </section>
 
@@ -201,7 +207,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="w-full py-20 md:py-32 px-6 lg:px-8 bg-background">
+      <section className="w-full py-20 md:py-32 px-6 lg:px-8 bg-transparent">
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-20">
             <TextReveal>
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 md:mb-8">Why choose us?</h2>
@@ -220,7 +226,7 @@ export default function Home() {
               { title: "Top-of-the-Line Printers", desc: "For smaller elements, we use high-precision FDM 3D printers to ensure meticulous detail and superior quality." },
               { title: "Expert Team", desc: "Our talented designers and fabricators bring expertise and creativity to every project, ensuring exceptional results from start to finish." },
             ].map((feature, i) => (
-              <FadeIn key={feature.title} delay={0.1 * i} direction="up" className="bg-muted p-6 md:p-8 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors">
+              <FadeIn key={feature.title} delay={0.1 * i} direction="up" className="bg-transparent p-6 md:p-8 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors">
                 <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                 </div>
