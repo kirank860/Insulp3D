@@ -53,8 +53,6 @@ export const metadata: Metadata = {
 };
 
 import LayoutWrapper from "@/components/LayoutWrapper";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
