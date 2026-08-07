@@ -91,6 +91,21 @@ export const getSiteSettingsQuery = groq`
   }
 `
 
+export const getServiceBySlugQuery = groq`
+  *[_type == "service" && slug.current == $slug][0] {
+    title,
+    "slug": slug.current,
+    description,
+    "iconUrl": icon.asset->url,
+    "mainImageUrl": mainImage.asset->url,
+    details,
+    offerTitle,
+    ctaTitle,
+    ctaDescription,
+    ctaButtonText
+  }
+`;
+
 export const getServicesQuery = groq`
   *[_type == "service"] {
     title,

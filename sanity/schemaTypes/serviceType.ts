@@ -52,6 +52,30 @@ export const serviceType = defineType({
       of: [{ type: 'string' }],
       description: 'List of bullet points for this service.',
     }),
+    defineField({
+      name: 'offerTitle',
+      title: 'Offer Section Title',
+      type: 'string',
+      description: 'Optional. Defaults to "WHAT WE OFFER".',
+    }),
+    defineField({
+      name: 'ctaTitle',
+      title: 'Call to Action Title',
+      type: 'string',
+      description: 'Optional. Defaults to "Ready to start your project?".',
+    }),
+    defineField({
+      name: 'ctaDescription',
+      title: 'Call to Action Description',
+      type: 'text',
+      description: 'Optional. Defaults to the standard CTA message.',
+    }),
+    defineField({
+      name: 'ctaButtonText',
+      title: 'Call to Action Button Text',
+      type: 'string',
+      description: 'Optional. Defaults to "Get in Touch".',
+    }),
   ],
   preview: {
     select: {

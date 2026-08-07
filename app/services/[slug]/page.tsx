@@ -17,7 +17,11 @@ const getServiceBySlugQuery = groq`
     description,
     "iconUrl": icon.asset->url,
     "mainImageUrl": mainImage.asset->url,
-    details
+    details,
+    offerTitle,
+    ctaTitle,
+    ctaDescription,
+    ctaButtonText
   }
 `;
 
@@ -52,13 +56,20 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   }
 
   // Handle differences in data structure between Sanity and hardcoded
-  const imageUrl = service.mainImageUrl || service.image || "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc3f5f28106b27f69b66_75252de1259e2a79bd20bc62fca24c51_POT.png";
+  // For the fallback image, use the Unsplash placeholder which is guaranteed to load
+  const imageUrl = service.mainImageUrl || "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop";
   const detailsList = service.details || [
     "Expert Consultation",
     "Precision 3D Modeling",
     "High-Quality Fabrication",
     "Professional Post-Processing"
   ];
+
+  // CMS editable fields with fallbacks
+  const offerTitle = service.offerTitle || "WHAT WE OFFER";
+  const ctaTitle = service.ctaTitle || "Ready to start your project?";
+  const ctaDescription = service.ctaDescription || `Contact us today to discuss how our ${service.title.toLowerCase()} services can bring your vision to reality.`;
+  const ctaButtonText = service.ctaButtonText || "Get in Touch";
 
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 overflow-hidden">
@@ -90,7 +101,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <section className="w-full bg-muted py-24 px-6 lg:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <TextReveal>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-foreground">WHAT WE OFFER</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-foreground uppercase">{offerTitle}</h2>
           </TextReveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {detailsList.map((detail: string, index: number) => (
@@ -110,12 +121,12 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       {/* CTA Section */}
       <section className="max-w-4xl mx-auto text-center px-6 lg:px-8 mt-32">
         <FadeIn direction="up">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-foreground">Ready to start your project?</h2>
-          <p className="text-lg text-foreground/70 font-josefin font-light mb-10">
-            Contact us today to discuss how our {service.title.toLowerCase()} services can bring your vision to reality.
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-foreground">{ctaTitle}</h2>
+          <p className="text-lg text-foreground/70 font-josefin font-light mb-10 whitespace-pre-line">
+            {ctaDescription}
           </p>
           <Link href="/contact-us" className="inline-block bg-primary text-primary-foreground px-8 py-4 rounded-full font-josefin font-bold tracking-widest uppercase hover:bg-primary/90 transition-colors">
-            Get in Touch
+            {ctaButtonText}
           </Link>
         </FadeIn>
       </section>
