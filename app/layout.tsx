@@ -53,6 +53,8 @@ export const metadata: Metadata = {
 };
 
 import LayoutWrapper from "@/components/LayoutWrapper";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -62,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${josefin.variable}`} suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col bg-background text-foreground" suppressHydrationWarning>
-        <LayoutWrapper>
+        <LayoutWrapper navbar={<Navbar />} footer={<Footer />}>
           {children}
         </LayoutWrapper>
       </body>
