@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 import { client } from "@/sanity/lib/client";
 import { getPageQuery, getServicesPageQuery, getServicesQuery } from "@/sanity/lib/queries";
 
+import { servicesData } from "@/lib/data/services";
+
 export default async function Services() {
   const pageContent = await client.fetch(getPageQuery, { slug: '/services' });
   const servicesPageData = await client.fetch(getServicesPageQuery);
@@ -41,16 +43,7 @@ export default async function Services() {
 
       {/* Services Grid (Icons) */}
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-        {(servicesList?.length > 0 ? servicesList : [
-          { title: "Architectural Ceiling", slug: "architectural-ceiling", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468e7_arcticons_3d-modeling-app.svg" },
-          { title: "Wall Panels", slug: "wall-panels", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg" },
-          { title: "Bespoke Furniture", slug: "bespoke-furniture", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468e8_mdi_sofa-outline.svg" },
-          { title: "Art Installations", slug: "art-installations", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468e9_ph_lamp.svg" },
-          { title: "Visual Merchandising", slug: "visual-merchandising", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446844_Vector-2.svg" },
-          { title: "Sculptures", slug: "sculptures", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468e6_game-icons_stone-bust.svg" },
-          { title: "Architectural Models", slug: "architectural-models", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468eb_fluent_city-20-regular.svg" },
-          { title: "Industrial Prototyping", slug: "industrial-prototyping", iconUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468ea_clarity_tools-line.svg" },
-        ]).map((service: any, i: number) => (
+        {(servicesList?.length > 0 ? servicesList : servicesData).map((service: any, i: number) => (
           <FadeIn key={service.title} delay={0.1 * i} direction="up" className="h-full">
             <Link href={`/services/${service.slug}`} className="bg-muted p-10 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors group text-center flex flex-col items-center h-full justify-center">
               <Image src={service.iconUrl || service.icon || "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg"} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
