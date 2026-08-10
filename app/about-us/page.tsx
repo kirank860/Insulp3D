@@ -37,7 +37,7 @@ export default async function AboutUs() {
 
           <div className="space-y-8 relative z-10">
             <WordPullUp words={title} className="text-left text-5xl md:text-7xl font-heading text-foreground mb-4 uppercase" />
-            <h2 className="text-3xl font-heading font-bold text-primary">Crafting The Future with 3D Printing</h2>
+            <h2 className="text-3xl font-heading font-bold text-primary">Crafting The Future With 3D Printing</h2>
             <p className="text-lg text-foreground/80 font-josefin font-light leading-relaxed whitespace-pre-line">
               {description}
             </p>
