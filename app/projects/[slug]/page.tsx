@@ -14,7 +14,7 @@ export async function generateStaticParams() {
     "slug": slug.current
   }`;
   const projects = await client.fetch(query);
-  return projects.map((project: { slug: string }) => ({
+  return (projects || []).map((project: { slug: string }) => ({
     slug: project.slug,
   }));
 }

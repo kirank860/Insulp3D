@@ -29,7 +29,7 @@ export default async function Projects() {
     { title: "AUTOMOBILE TRANSFORMATION", image: "/assets/projects/4.jpg" },
   ];
 
-  const displayProjects = projects.length > 0 ? projects : fallbackProjects;
+  const displayProjects = projects && projects.length > 0 ? projects : fallbackProjects;
   
   return (
     <div className="flex flex-col min-h-screen pt-24 pb-24 px-6 lg:px-8 bg-background overflow-x-hidden">
