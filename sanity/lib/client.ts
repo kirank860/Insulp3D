@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from 'next-sanity'
 import { apiVersion, dataset, projectId, token } from '../env'
 
