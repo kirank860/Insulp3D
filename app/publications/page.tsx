@@ -36,7 +36,7 @@ export default async function Publications() {
     { title: "REIMAGINING INTERIOR SPACES", date: "July 25, 2025", desc: "Reimagining Interior Spaces", image: "https://cdn.prod.website-files.com/66da0818e9f24d66d3446816/687e3a696cdc4f832143ac0b_vase%20min.png" },
   ];
 
-  const displayPublications = publications.length > 0 ? publications : fallbackPublications;
+  const displayPublications = publications && publications.length > 0 ? publications : fallbackPublications;
   const featuredArticle = displayPublications[0];
   const gridArticles = displayPublications.slice(1);
 

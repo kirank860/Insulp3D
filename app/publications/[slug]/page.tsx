@@ -14,7 +14,7 @@ export async function generateStaticParams() {
     "slug": slug.current
   }`;
   const publications = await client.fetch(query);
-  return publications.map((pub: { slug: string }) => ({
+  return (publications || []).map((pub: { slug: string }) => ({
     slug: pub.slug,
   }));
 }
