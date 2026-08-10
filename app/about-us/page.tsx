@@ -25,7 +25,7 @@ export default async function AboutUs() {
 
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 overflow-hidden">
-      
+
       {/* Hero Section */}
       <section className="px-6 lg:px-8 mb-32 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative">
         <FadeIn direction="right" className="relative">
@@ -36,15 +36,15 @@ export default async function AboutUs() {
 
           <div className="space-y-8 relative z-10">
             <WordPullUp words={title} className="text-left text-5xl md:text-7xl font-heading text-foreground mb-4 uppercase" />
-            <h2 className="text-3xl font-heading font-bold text-primary">Crafting the Future with 3D Printing</h2>
+            <h2 className="text-3xl font-heading font-bold text-primary">Crafting The Future with 3D Printing</h2>
             <p className="text-lg text-foreground/80 font-josefin font-light leading-relaxed whitespace-pre-line">
               {description}
             </p>
           </div>
         </FadeIn>
         <FadeIn direction="left" delay={0.2} className="w-full">
-          <ParallaxImage 
-            src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b6_fb7ba5ab760b3084f89e4cfc22c7f70c_web%20render_edited-min.png" 
+          <ParallaxImage
+            src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d34468b6_fb7ba5ab760b3084f89e4cfc22c7f70c_web%20render_edited-min.png"
             alt="top 3D printed chair by INSCULP3D at Dubai"
             className="aspect-[4/5] bg-border rounded-3xl shadow-2xl w-full"
             speed={1.2}
@@ -63,7 +63,7 @@ export default async function AboutUs() {
               Setting global standards in digital fabrication, we transform spaces with pioneering 3D printing technologies.
             </p>
           </FadeIn>
-          
+
           <div className="grid md:grid-cols-3 gap-12">
             {(aboutPageData?.visionCards || [
               { title: "Architecture", desc: "Transforming spaces through the creation of practical and innovative architectural elements, like wall and ceiling panels, using the power of large-format digital fabrication." },
@@ -100,7 +100,7 @@ export default async function AboutUs() {
             As pioneers in the realms of creativity and innovation in art and design, we uphold the following principles.
           </p>
         </FadeIn>
-        
+
         <div className="space-y-6">
           {(aboutPageData?.valuesList || [
             { title: "Visionary Thinking", desc: "We commit to challenging the boundaries of what is perceived as possible, fostering a culture of bold ideas and adventurous experimentation." },
@@ -147,9 +147,9 @@ export default async function AboutUs() {
           </div>
         </FadeIn>
         <FadeIn direction="left" delay={0.2} className="w-full">
-          <ParallaxImage 
-            src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbc1818843b7e0a75d6c_820f1eac47e65ca457ad567c07691576_IMG-20241105-WA0039.avif" 
-            alt="Pellets" 
+          <ParallaxImage
+            src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bbc1818843b7e0a75d6c_820f1eac47e65ca457ad567c07691576_IMG-20241105-WA0039.avif"
+            alt="Pellets"
             className="aspect-[3/4] bg-border rounded-3xl shadow-2xl w-full"
             speed={1.2}
           />
@@ -170,16 +170,16 @@ export default async function AboutUs() {
             ]).map((person: any, i: number) => (
               <FadeIn key={person.name} delay={0.1 * i} direction="up" className={`w-full ${person.stagger || (i % 2 !== 0) ? 'md:mt-16' : ''}`}>
                 <div className="group relative w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-muted border border-border/50">
-                  <Image 
-                    src={person.imageUrl || person.img} 
-                    alt={person.name} 
-                    fill 
-                    sizes="(max-width: 768px) 100vw, 33vw" 
-                    className="object-cover transition-all duration-700 ease-in-out scale-100 group-hover:scale-105" 
+                  <Image
+                    src={person.imageUrl || person.img}
+                    alt={person.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-all duration-700 ease-in-out scale-100 group-hover:scale-105"
                   />
                   {/* Subtle persistent bottom gradient */}
                   <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 transition-opacity duration-500 group-hover:opacity-100" />
-                  
+
                   {/* Persistent Title */}
                   <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20 w-full transition-all duration-500 transform group-hover:translate-y-[-20px] group-hover:opacity-0">
                     <h3 className="text-2xl font-heading font-bold text-white mb-2">{person.name}</h3>
@@ -209,7 +209,7 @@ export default async function AboutUs() {
             In an industry where traditional manufacturing and standard 3D printing often fall short, InSculp excels by addressing key pain points such as customization constraints, scalability issues, sustainability concerns, and extended lead times. We leverage large format 3D printing to transform these challenges into opportunities for innovation and excellence:
           </p>
         </FadeIn>
-        
+
         <div className="grid md:grid-cols-2 gap-x-16 gap-y-8">
           {(aboutPageData?.whyChooseUsList || [
             { title: "Advanced Pellet Printers", desc: "Our state-of-the-art pellet printers offer unmatched precision and quality, enabling the creation of intricate and robust large format 3D prints." },
@@ -264,7 +264,7 @@ export default async function AboutUs() {
             We harness cutting-edge 3D printing technologies to deliver exceptional quality and precision. Our capabilities extend from large format 3D printing to post processing.
           </p>
         </FadeIn>
-        
+
         <div className="grid md:grid-cols-3 gap-12">
           {(aboutPageData?.technologyList || [
             { title: "Large Format 3D Printing", desc: "Our printers can handle projects up to 3 meters in height, ideal for creating grand architectural elements to large artistic sculptures with exceptional detail." },
