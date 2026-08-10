@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 
 import { WordPullUp } from "@/components/ui/word-pull-up";
