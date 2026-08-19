@@ -180,6 +180,28 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Trusted By (Client Logos) */}
+      {homePageData?.clientLogos && homePageData.clientLogos.length > 0 && (
+        <section className="w-full py-16 px-6 lg:px-8 bg-background border-y border-border/50">
+          <div className="max-w-7xl mx-auto">
+            <p className="text-center font-josefin tracking-widest text-foreground/50 uppercase text-xs mb-10">Trusted By Leading Brands</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
+              {homePageData.clientLogos.map((logoItem: any, i: number) => (
+                <FadeIn key={logoItem.name || i} delay={0.05 * i}>
+                  <Image
+                    src={logoItem.logoUrl}
+                    alt={logoItem.name || "Client logo"}
+                    width={140}
+                    height={60}
+                    className="h-8 md:h-10 w-auto object-contain opacity-60 hover:opacity-100 grayscale hover:grayscale-0 transition-all"
+                  />
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Why Choose Us */}
       <section className="w-full py-20 md:py-32 px-6 lg:px-8 bg-transparent">
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-20">

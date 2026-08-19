@@ -86,7 +86,17 @@ export const aboutPageType = defineType({
       name: 'testimonials',
       title: 'Testimonials (Client Quotes)',
       type: 'array',
-      of: [{ type: 'text' }],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'quote', type: 'text', title: 'Quote' },
+            { name: 'name', type: 'string', title: 'Client Name' },
+            { name: 'role', type: 'string', title: 'Role / Title' },
+            { name: 'company', type: 'string', title: 'Company' },
+          ],
+        },
+      ],
     }),
     defineField({
       name: 'technologyList',

@@ -2,7 +2,6 @@ import { PortableText } from '@portabletext/react';
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { FadeIn } from "@/components/ui/fade-in";
-import { VelocityScroll } from "@/components/gsap/VelocityScroll";
 import { TextReveal } from "@/components/gsap/TextReveal";
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -41,16 +40,14 @@ export default async function ProjectCaseStudy(props: { params: Promise<{ slug: 
     <div className="bg-background min-h-screen text-foreground">
       {/* Cinematic Hero */}
       <section className="relative min-h-[70vh] md:min-h-[80vh] w-full flex flex-col overflow-hidden bg-black">
-        <VelocityScroll intensity={1.5} className="absolute inset-0 w-full h-[150vh] -top-[25vh]">
-          <div className="w-full h-full relative">
-             <img 
+        <div className="absolute inset-0 w-full h-full">
+             <img
                src={project.image?.asset ? urlForImage(project.image).url() : project.image}
                alt={project.title}
                className="w-full h-full object-cover scale-[1.05] opacity-70"
              />
              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-          </div>
-        </VelocityScroll>
+        </div>
         <div className="relative z-20 w-full px-6 md:px-12 pt-40 pb-16 max-w-7xl mx-auto flex flex-col items-start justify-end flex-1">
           <TextReveal>
              <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-black text-white uppercase tracking-wider drop-shadow-2xl leading-[1.1] max-w-5xl text-left">

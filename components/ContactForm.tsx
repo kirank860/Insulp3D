@@ -64,7 +64,16 @@ export default function ContactForm() {
         <label className="text-sm font-heading font-bold tracking-widest text-foreground">MESSAGE</label>
         <textarea name="message" required rows={4} className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
       </div>
-      
+      <div className="space-y-2">
+        <label className="text-sm font-heading font-bold tracking-widest text-foreground">ATTACH DESIGN / REFERENCE (OPTIONAL)</label>
+        <input
+          type="file"
+          name="attachment"
+          accept="image/*,.pdf,.stl,.obj,.zip"
+          className="w-full bg-background border border-border rounded-lg px-4 py-3 font-josefin text-sm text-foreground/70 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-primary-foreground file:font-heading file:font-bold file:text-xs file:tracking-widest file:cursor-pointer hover:file:bg-primary/90 transition-all"
+        />
+      </div>
+
       {status === "error" && (
         <div className="p-4 bg-red-50 text-red-600 rounded-lg font-josefin text-sm">
           Failed to submit enquiry. Please try again later.

@@ -2,7 +2,6 @@ import { PortableText } from '@portabletext/react';
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { FadeIn } from "@/components/ui/fade-in";
-import { VelocityScroll } from "@/components/gsap/VelocityScroll";
 import { TextReveal } from "@/components/gsap/TextReveal";
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -41,16 +40,14 @@ export default async function PublicationArticle(props: { params: Promise<{ slug
     <div className="bg-background min-h-screen text-foreground">
       {/* Editorial Hero */}
       <section className="relative min-h-[70vh] md:min-h-[80vh] w-full flex flex-col overflow-hidden bg-black">
-        <VelocityScroll intensity={1} className="absolute inset-0 w-full h-[150vh] -top-[25vh]">
-          <div className="w-full h-full relative">
-             <img 
+        <div className="absolute inset-0 w-full h-full">
+             <img
                src={publication.image?.asset ? urlForImage(publication.image).url() : publication.image}
                alt={publication.title}
                className="w-full h-full object-cover scale-[1.05] opacity-70"
              />
              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-          </div>
-        </VelocityScroll>
+        </div>
         <div className="relative z-20 w-full px-6 md:px-12 pt-40 pb-16 max-w-7xl mx-auto flex flex-col items-start justify-end flex-1">
           <FadeIn delay={0.2} className="mb-6">
             <span className="inline-block px-4 py-1.5 bg-primary text-primary-foreground font-josefin tracking-[0.2em] uppercase text-xs font-bold rounded-full shadow-2xl backdrop-blur-md border border-primary/20">

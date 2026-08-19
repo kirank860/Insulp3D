@@ -34,6 +34,10 @@ export const getHomePageQuery = groq`
       title,
       "imageUrl": image.asset->url
     },
+    clientLogos[] {
+      name,
+      "logoUrl": logo.asset->url
+    },
     processSteps[] {
       step,
       title,
@@ -55,7 +59,7 @@ export const getAboutPageQuery = groq`
       "imageUrl": image.asset->url
     },
     whyChooseUsList[] { title, desc },
-    testimonials,
+    testimonials[] { quote, name, role, company },
     technologyList[] { title, desc }
   }
 `

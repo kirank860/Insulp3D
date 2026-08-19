@@ -247,12 +247,28 @@ export default async function AboutUs() {
               "I had the pleasure of working with INSCULP 3D to create custom props for our game show, and I couldn't be more impressed with the outcome.",
               "We recently worked with INSCULP 3D to create awards for our annual ceremony, and they were nothing short of exceptional. A demonstration of unparalleled creativity, professionalism, and attention to detail.",
               "Even though we are a 3D printing company, our core competency is in crafting forms."
-            ]).map((quote: string, i: number) => (
-              <FadeIn key={i} delay={0.1 * i} direction="up" className="bg-background/10 p-8 rounded-3xl backdrop-blur-sm border border-background/20">
-                <div className="text-primary text-4xl font-heading mb-4">&quot;</div>
-                <p className="font-josefin font-normal text-white leading-relaxed italic">{quote}</p>
-              </FadeIn>
-            ))}
+            ]).map((item: any, i: number) => {
+              const quote = typeof item === "string" ? item : item.quote;
+              const name = typeof item === "string" ? null : item.name;
+              const role = typeof item === "string" ? null : item.role;
+              const company = typeof item === "string" ? null : item.company;
+              return (
+                <FadeIn key={i} delay={0.1 * i} direction="up" className="bg-background/10 p-8 rounded-3xl backdrop-blur-sm border border-background/20">
+                  <div className="text-primary text-4xl font-heading mb-4">&quot;</div>
+                  <p className="font-josefin font-normal text-white leading-relaxed italic">{quote}</p>
+                  {name && (
+                    <div className="mt-6 pt-6 border-t border-background/20">
+                      <p className="font-heading font-bold text-white text-sm">{name}</p>
+                      {(role || company) && (
+                        <p className="font-josefin text-white/60 text-xs uppercase tracking-widest mt-1">
+                          {[role, company].filter(Boolean).join(", ")}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>

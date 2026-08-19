@@ -36,8 +36,8 @@ export default async function ContactUs() {
             We thrive on creation, innovation and collaboration. Do you have a detailed design, or simply a vision? Let our team handle it for you. Get in touch with us today or visit us to craft your form.
           </p>
           <div className="space-y-4 pt-8">
-            <p className="text-foreground font-josefin font-light"><strong>Email:</strong> {siteSettings?.email || "info@insculp3d.com"}</p>
-            <p className="text-foreground font-josefin font-light"><strong>Phone:</strong> {siteSettings?.phone || "+971 55 2313 447"}</p>
+            <p className="text-foreground font-josefin font-light"><strong>Email:</strong> <a href={`mailto:${siteSettings?.email || "info@insculp3d.com"}`} className="hover:text-primary transition-colors">{siteSettings?.email || "info@insculp3d.com"}</a></p>
+            <p className="text-foreground font-josefin font-light"><strong>Phone:</strong> <a href={`tel:${(siteSettings?.phone || "+971 55 2313 447").replace(/\s+/g, "")}`} className="hover:text-primary transition-colors">{siteSettings?.phone || "+971 55 2313 447"}</a></p>
             <p className="text-foreground font-josefin font-light"><strong>Address:</strong> {siteSettings?.address || "YS International WH 05, Dubai Investment Park, DIP, Dubai, UAE"}</p>
           </div>
           <div className="space-y-4 pt-8 border-t border-border/50">

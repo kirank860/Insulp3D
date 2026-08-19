@@ -92,6 +92,21 @@ export const homePageType = defineType({
       ],
     }),
     defineField({
+      name: 'clientLogos',
+      title: 'Client / Partner Logos ("Trusted By" strip)',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'name', type: 'string', title: 'Client Name' },
+            { name: 'logo', type: 'image', title: 'Logo' },
+          ],
+        },
+      ],
+      description: 'Shown as a "Trusted By" logo strip on the homepage. Leave empty to hide the section.',
+    }),
+    defineField({
       name: 'processSteps',
       title: 'Our Process Steps',
       type: 'array',

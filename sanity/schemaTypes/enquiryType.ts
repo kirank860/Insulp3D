@@ -36,6 +36,12 @@ export const enquiryType = defineType({
       readOnly: true,
     }),
     defineField({
+      name: 'attachment',
+      title: 'Attachment (Design / Reference File)',
+      type: 'file',
+      readOnly: true,
+    }),
+    defineField({
       name: 'submittedAt',
       title: 'Submitted At',
       type: 'datetime',
