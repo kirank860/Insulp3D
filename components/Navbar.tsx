@@ -55,7 +55,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 z-50 relative"
+            className="flex flex-col z-50 relative group"
             onClick={(e) => {
               if (pathname === "/") {
                 e.preventDefault();
@@ -68,8 +68,12 @@ export default function Navbar() {
               alt="InSculp 3D Logo"
               width={200}
               height={40}
-              className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 hover:scale-105"
+              priority={true}
+              className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
+            <span className="text-[#969696] italic text-[9px] md:text-[11px] tracking-widest font-josefin font-light ml-[2.5rem] md:ml-[3.1rem] -mt-0.5 transition-transform duration-300 group-hover:scale-105 origin-left">
+              CRAFTING FORMS
+            </span>
           </Link>
 
           {/* Desktop Nav */}

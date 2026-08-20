@@ -46,9 +46,9 @@ export default async function Services() {
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {(servicesList?.length > 0 ? servicesList : servicesData).map((service: any, i: number) => (
           <FadeIn key={service.title} delay={0.1 * i} direction="up" className="h-full">
-            <Link href={`/services/${service.slug}`} className="bg-muted p-10 rounded-3xl border border-border/50 hover:border-primary/50 transition-colors group text-center flex flex-col items-center h-full justify-center">
-              <Image src={service.iconUrl || service.icon || "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg"} alt={service.title} width={64} height={64} className="mb-6 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
+            <Link href={`/services/${service.slug}`} className="bg-muted p-4 sm:p-6 md:p-10 rounded-2xl md:rounded-3xl border border-border/50 hover:border-primary/50 transition-colors group text-center flex flex-col items-center h-full justify-center">
+              <Image src={service.iconUrl || service.icon || "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d3446845_Vector.svg"} alt={service.title} width={64} height={64} className="mb-4 md:mb-6 w-12 h-12 md:w-16 md:h-16 group-hover:scale-110 transition-transform" />
+              <h3 className="text-sm sm:text-base md:text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors break-words w-full">{service.title}</h3>
             </Link>
           </FadeIn>
         ))}
@@ -194,7 +194,7 @@ export default async function Services() {
 
       {/* CTA Footer */}
       <section className="w-full max-w-7xl mx-auto mt-20 bg-primary text-primary-foreground rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
+        <div className="absolute inset-0 opacity-10 pointer-events-none animate-bg-drift" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1.5px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative z-10 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6">Ready to Build the Impossible?</h2>
           <p className="text-xl md:text-2xl font-josefin font-light mb-10 text-primary-foreground/90">

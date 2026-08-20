@@ -50,14 +50,15 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden px-6 lg:px-8">
+      <section className="relative w-full min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden px-6 lg:px-8 pt-32 pb-12 lg:pt-0 lg:pb-0">
         {/* Background Video */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          preload="none"
+          disablePictureInPicture
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src="/assets/herobanner.mp4" type="video/mp4" />
@@ -96,25 +97,25 @@ export default async function Home() {
       </section>
 
       {/* Animated Marquee Gap Filler */}
-      <section className="w-full py-12 md:py-16 bg-background overflow-hidden flex flex-col gap-8 relative z-20">
+      <section className="w-full py-4 md:py-16 bg-background overflow-hidden flex flex-col gap-2 md:gap-8 relative z-20">
         <Marquee className="[--duration:40s] [--gap:4rem]" pauseOnHover>
           {(homePageData?.marqueeTextTop || ["LARGE FORMAT 3D PRINTING", "ARCHITECTURAL MODELS", "CUSTOM FURNITURE", "ART INSTALLATIONS", "INDUSTRIAL PROPS", "BESPOKE SCULPTURES"]).map((item: string, i: number) => (
-            <span key={i} className="text-3xl md:text-5xl font-heading font-black text-primary/5 hover:text-primary/20 transition-colors tracking-widest whitespace-nowrap">
-              {item} <span className="text-primary/10 mx-8">•</span>
+            <span key={i} className="text-2xl sm:text-3xl md:text-5xl font-heading font-black text-primary/5 hover:text-primary/20 transition-colors tracking-widest whitespace-nowrap">
+              {item} <span className="text-primary/10 mx-4 md:mx-8">•</span>
             </span>
           ))}
         </Marquee>
         <Marquee className="[--duration:45s] [--gap:4rem]" reverse pauseOnHover>
           {(homePageData?.marqueeTextBottom || ["SUSTAINABLE MANUFACTURING", "AEROSPACE PROTOTYPES", "AUTOMOTIVE DESIGN", "RETAIL DISPLAYS", "FILM & THEATER PROPS", "MUSEUM EXHIBITS"]).map((item: string, i: number) => (
-            <span key={i} className="text-3xl md:text-5xl font-heading font-black text-primary/5 hover:text-primary/20 transition-colors tracking-widest whitespace-nowrap">
-              {item} <span className="text-primary/10 mx-8">•</span>
+            <span key={i} className="text-2xl sm:text-3xl md:text-5xl font-heading font-black text-primary/5 hover:text-primary/20 transition-colors tracking-widest whitespace-nowrap">
+              {item} <span className="text-primary/10 mx-4 md:mx-8">•</span>
             </span>
           ))}
         </Marquee>
       </section>
 
       {/* Features Section */}
-      <section className="w-full py-16 md:py-24 px-6 lg:px-8 bg-background/60 backdrop-blur-sm relative overflow-hidden">
+      <section className="w-full pt-8 pb-16 md:py-24 px-6 lg:px-8 bg-background/60 backdrop-blur-sm relative overflow-hidden">
         {/* Giant Spinning Background Logo */}
         <div className="absolute top-[5%] left-0 -translate-x-[5%] z-0 pointer-events-none w-[150vw] sm:w-[100vw] max-w-[1200px] aspect-square flex items-center justify-center opacity-[0.06]">
           <Image 
@@ -164,7 +165,7 @@ export default async function Home() {
 
       {/* Stats Section */}
       <section className="w-full py-16 md:py-24 px-6 lg:px-8 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
+        <div className="absolute inset-0 opacity-10 pointer-events-none animate-bg-drift" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1.5px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 relative z-10 text-center">
           {(homePageData?.stats || [
             { number: "26k+", label: "Happy Customers" },
@@ -283,7 +284,7 @@ export default async function Home() {
               { title: "Bespoke Furniture", imageUrl: "https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/6798bc764063727d590a1b1c_IMG_1062.JPG" }
             ]).map((industry: any, i: number) => (
               <div key={industry.title} className="group relative w-[80vw] md:w-[45vw] lg:w-[33vw] h-full rounded-3xl overflow-hidden cursor-pointer shrink-0 mr-6 md:mr-8 shadow-2xl">
-                <Link href="/projects" className="block w-full h-full">
+                <Link href="/projects" className="block w-full h-full relative">
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10" />
                   <Image src={industry.imageUrl || industry.img} alt={industry.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20">

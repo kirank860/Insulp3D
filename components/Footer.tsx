@@ -8,12 +8,15 @@ export default async function Footer() {
     <footer className="w-full bg-foreground text-white py-16 mt-auto">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-2">
-          <Link href="/" className="flex items-center gap-2 mb-8">
+          <Link href="/" className="flex flex-col mb-8 group w-max">
             <img
               src="https://cdn.prod.website-files.com/66da0818e9f24d66d344680f/66da0818e9f24d66d344683c_Group.svg"
               alt="InSculp 3D Logo"
-              className="h-12 w-auto object-contain brightness-0 invert"
+              className="h-12 w-auto object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-105 origin-left"
             />
+            <span className="text-[#969696] italic text-[11px] md:text-[13px] tracking-widest font-josefin font-light ml-[3.7rem] -mt-0.5 transition-transform duration-300 group-hover:scale-105 origin-left">
+              CRAFTING FORMS
+            </span>
           </Link>
           <p className="text-white/70 font-light max-w-sm">
             Leading provider of Large-scale 3D printing and additive manufacturing in Dubai. Trusted by designers, architects, and engineers across the Europe, Middle East & Africa region.

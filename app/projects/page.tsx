@@ -71,7 +71,7 @@ export default async function Projects() {
 
       {/* CTA Footer */}
       <section className="w-full max-w-7xl mx-auto mt-12 bg-primary text-primary-foreground rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
+        <div className="absolute inset-0 opacity-10 pointer-events-none animate-bg-drift" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1.5px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative z-10 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 uppercase">Bring Your Idea to Life</h2>
           <p className="text-xl md:text-2xl font-josefin font-light mb-10 text-primary-foreground/90">

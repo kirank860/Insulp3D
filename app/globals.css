@@ -23,6 +23,13 @@
     from { transform: translateX(0); }
     to { transform: translateX(calc(-100% - var(--gap))); }
   }
+
+  --animate-bg-drift: bg-drift 20s linear infinite;
+
+  @keyframes bg-drift {
+    0% { background-position: 0 0; }
+    100% { background-position: 24px 24px; }
+  }
 }
 
 @layer base {
@@ -55,7 +62,6 @@
     @apply border-border;
   }
   html {
-    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;

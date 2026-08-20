@@ -28,7 +28,7 @@ export default function Scene() {
         </Suspense>
       </Canvas>
       {/* Light overlay to ensure text remains readable */}
-      <div className="absolute inset-0 bg-background/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-background/70 backdrop-blur-sm pointer-events-none transition-all duration-500" />
     </div>
   );
 }
